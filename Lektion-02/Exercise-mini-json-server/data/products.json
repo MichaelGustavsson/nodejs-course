@@ -1,0 +1,33 @@
+[
+  {
+    "id": "731085fc268c4a94966bcd1bc7c0e993",
+    "name": "Råglimpa",
+    "price": 29.95,
+    "weight": "200g"
+  },
+  { "id": "12c6a09826b840d6934f387d0091a9d7", "name": "Frökubb", "price": 34.9, "weight": "250g" },
+  {
+    "id": "8f046897631e4bc9beff6f29e7d869fe",
+    "name": "Kanel bulle",
+    "price": 28.9,
+    "weight": "400g"
+  },
+  {
+    "id": "11cabbdc1d7545c8877dcc312b18328c",
+    "name": "Bondkaka",
+    "price": 39.95,
+    "weight": "230g"
+  },
+  {
+    "id": "453efde97a3a4edb864d7631f400532d",
+    "name": "Finska pinnar",
+    "price": 34.75,
+    "weight": "240g"
+  },
+  {
+    "id": "b22b93a01e064c2ab37399cf35c08c57",
+    "name": "Finska pinnar",
+    "price": 34.75,
+    "weight": "240g"
+  }
+]
