@@ -23,10 +23,24 @@ const products = [
   },
 ];
 
+const responseModel = {
+  success: false,
+  statusCode: 404,
+  error: 'Hittar inte!',
+  items: 0,
+  data: null,
+};
+
 // Endpoints...
 // Hämta alla produkter...
 app.get('/api/v1/products', (req, res) => {
-  res.status(200).json({ success: true, statusCode: 200, items: products.length, data: products });
+  responseModel.data = products;
+  responseModel.success = true;
+  responseModel.error = null;
+  responseModel.statusCode = 200;
+  responseModel.items = products.length;
+
+  res.status(200).json(responseModel);
 });
 
 // Hämta en produkt baserat på dess id...
@@ -34,7 +48,20 @@ app.get('/api/v1/products/:id', (req, res) => {
   const id = req.params.id;
   const product = products.find((p) => p.id === id);
 
-  res.status(200).json({ success: true, statusCode: 200, items: 1, data: product });
+  if (!product) {
+    responseModel.error = `Kunde inte hitta någon produkt med id ${id}`;
+    res.status(404).json(responseModel);
+
+    return;
+  }
+
+  responseModel.data = product;
+  responseModel.success = true;
+  responseModel.error = null;
+  responseModel.statusCode = 200;
+  responseModel.items = 1;
+
+  res.status(200).json(responseModel);
 });
 
 // Tar emot data(ny produkt)...
@@ -43,13 +70,26 @@ app.post('/api/v1/products', (req, res) => {
   req.body.id = id;
   products.push(req.body);
 
-  res.status(201).json({ success: true, statusCode: 201, items: 1, data: req.body });
+  responseModel.data = req.body;
+  responseModel.success = true;
+  responseModel.error = null;
+  responseModel.statusCode = 201;
+  responseModel.items = 1;
+
+  res.status(201).json(responseModel);
 });
 
 // Uppdaterar en produkt till fullo...
 app.put('/api/v1/products/:id', (req, res) => {
   const id = req.params.id;
   const product = products.find((p) => p.id === id);
+
+  if (!product) {
+    responseModel.error = `Kunde inte hitta någon produkt med id ${id}`;
+    res.status(404).json(responseModel);
+
+    return;
+  }
 
   product.name = req.body.name ?? product.name;
   product.price = req.body.price ?? product.price;
@@ -64,6 +104,13 @@ app.patch('/api/v1/products/:id', (req, res) => {
   const id = req.params.id;
   const product = products.find((p) => p.id === id);
 
+  if (!product) {
+    responseModel.error = `Kunde inte hitta någon produkt med id ${id}`;
+    res.status(404).json(responseModel);
+
+    return;
+  }
+
   product.price = req.body.price ?? product.price;
 
   res.status(204).end();
@@ -71,7 +118,21 @@ app.patch('/api/v1/products/:id', (req, res) => {
 
 // Ta bort en produkt baserat på dess id...
 app.delete('/api/v1/products/:id', (req, res) => {
-  res.json({ message: 'DELETE funkar!' });
+  // 1. Hämta in produkten med id som vi får i req.params.id
+  const id = req.params.id;
+  const product = products.find((p) => p.id === id);
+
+  if (!product) {
+    responseModel.error = `Kunde inte hitta någon produkt med id ${id} så det gick inte att ta bort`;
+    res.status(404).json(responseModel);
+
+    return;
+  }
+
+  // 2. Ta bort ur productslistan objektet som vi fick i steg 1.
+  products.splice(products.indexOf(product), 1);
+
+  res.status(204).end();
 });
 
 const PORT = process.env.PORT || 5001;
