@@ -1,8 +1,8 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const cors = require('cors');
 const logger = require('./middleware/logger');
 const errorHandler = require('./middleware/errorHandler');
-const errorResponse = require('./utilities/ErrorResponseModel');
 const productsRouter = require('./routes/products-routes');
 const ErrorResponse = require('./utilities/ErrorResponseModel');
 
@@ -11,8 +11,8 @@ dotenv.config({ path: './config/config.env' });
 const app = express();
 
 // Middleware...
-// Eget middleware...
 app.use(express.json());
+app.use(cors());
 app.use('/api/v1/products', productsRouter);
 
 // Catch all url...

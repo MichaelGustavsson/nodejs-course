@@ -13,10 +13,6 @@ const listProducts = (req, res, next) => {
 
 const findProduct = (req, res, next) => {
   try {
-    // const error = new Error('Det gick fel');
-    // error.statusCode = 400;
-
-    // throw error;
     const id = req.params.id;
     const product = products.find((p) => p.id === id);
 

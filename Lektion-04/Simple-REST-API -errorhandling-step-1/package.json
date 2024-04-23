@@ -5,15 +5,18 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server",
-    "start": "NODE_ENV=production node server"
+    "start": "NODE_ENV=production node server",
+    "debug": "ndb server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "ndb": "^1.1.5",
     "nodemon": "^3.1.0"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "uuid": "^9.0.1"
