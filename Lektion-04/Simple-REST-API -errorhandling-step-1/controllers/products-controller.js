@@ -1,9 +1,9 @@
 const uuid = require('uuid');
 const products = require('../model/Products');
-const ResponseModel = require('../model/ResponseModel');
+const ResponseModel = require('../utilities/ResponseModel');
+const ErrorResponse = require('../utilities/ErrorResponseModel');
 
-const listProducts = (req, res) => {
-  // throw new Error('Hoppsan det gick galet!');
+const listProducts = (req, res, next) => {
   try {
     res.status(200).json(new ResponseModel({ statusCode: 200, data: products }));
   } catch (error) {
@@ -11,25 +11,22 @@ const listProducts = (req, res) => {
   }
 };
 
-const findProduct = (req, res) => {
+const findProduct = (req, res, next) => {
   try {
+    // const error = new Error('Det gick fel');
+    // error.statusCode = 400;
+
+    // throw error;
     const id = req.params.id;
     const product = products.find((p) => p.id === id);
 
     if (!product) {
-      res.status(404).json(
-        new ResponseModel({
-          statusCode: 404,
-          error: `Kunde inte hitta någon produkt med id ${id}`,
-        })
-      );
-
-      return;
+      return next(new ErrorResponse(`Kunde inte hitta någon produkt med id ${id}`, 404));
     }
 
     res.status(200).json(new ResponseModel({ statusCode: 200, data: product }));
   } catch (error) {
-    res.status(500).json(new ResponseModel({ statusCode: 500, error: 'Internal Server Error' }));
+    next(new ErrorResponse('Det gick galet', 400));
   }
 };
 
