@@ -1,0 +1,17 @@
+const Products = [
+  {
+    id: '731085fc268c4a94966bcd1bc7c0e993',
+    name: 'Råglimpa',
+    price: 29.95,
+    weight: '200g',
+  },
+  { id: '12c6a09826b840d6934f387d0091a9d7', name: 'Frökubb', price: 34.9, weight: '250g' },
+  {
+    id: '8f046897631e4bc9beff6f29e7d869fe',
+    name: 'Kanel bulle',
+    price: 28.9,
+    weight: '400g',
+  },
+];
+
+module.exports = Products;
