@@ -1,3 +1,5 @@
 Method: GET Url: /api/v1/products/731085fc268c4a94966bcd1bc7c0e99 Date: 2024-04-24 Time: 09:39:12 Success: false - Message: Kunde inte hitta någon produkt med id 731085fc268c4a94966bcd1bc7c0e99
 Method: GET Url: /api/v1/products/731085fc268c4a94966bcd1bc7c0e99 Date: 2024-04-24 Time: 09:40:20 Success: false - Message: Kunde inte hitta någon produkt med id 731085fc268c4a94966bcd1bc7c0e99
 Method: GET Url: /api/v1/products/731085fc268c4a94966bcd1bc7c0e99 Date: 2024-04-24 Time: 09:49:04 Success: false - Message: Kunde inte hitta någon produkt med id 731085fc268c4a94966bcd1bc7c0e99
+Method: GET Url: /api/v1/customers/8f1ef4d754f3458196a86077b4f45528 Date: 2024-04-24 Time: 11:39:46 Success: true - Message: Kunde inte hitta någon kund med id: 8f1ef4d754f3458196a86077b4f45528
+Method: PUT Url: /api/v1/customers/e854c5b36f794708a713297c3ba597e0 Date: 2024-04-24 Time: 11:41:05 Success: true - Message: Cannot read properties of undefined (reading 'street')

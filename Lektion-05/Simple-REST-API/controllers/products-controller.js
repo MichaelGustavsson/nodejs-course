@@ -1,15 +1,20 @@
-const fs = require('fs');
-const path = require('path');
 const uuid = require('uuid');
 const products = require('../data/products.json');
 const ResponseModel = require('../utilities/ResponseModel');
 const ErrorResponse = require('../utilities/ErrorResponseModel');
+const fileHandler = require('../utilities/fileHandler');
 
 const listProducts = (req, res, next) => {
   try {
-    res.status(200).json(new ResponseModel({ statusCode: 200, data: products }));
+    res
+      .status(200)
+      .json(new ResponseModel({ statusCode: 200, data: products }));
   } catch (error) {
-    res.status(500).json(new ResponseModel({ statusCode: 500, error: 'Internal Server Error' }));
+    res
+      .status(500)
+      .json(
+        new ResponseModel({ statusCode: 500, error: 'Internal Server Error' })
+      );
   }
 };
 
@@ -19,7 +24,9 @@ const findProduct = (req, res, next) => {
     const product = products.find((p) => p.id === id);
 
     if (!product) {
-      return next(new ErrorResponse(`Kunde inte hitta någon produkt med id ${id}`, 404));
+      return next(
+        new ErrorResponse(`Kunde inte hitta någon produkt med id ${id}`, 404)
+      );
     }
 
     res.status(200).json(new ResponseModel({ statusCode: 200, data: product }));
@@ -29,18 +36,22 @@ const findProduct = (req, res, next) => {
 };
 
 const addProduct = (req, res) => {
-  const filePath = path.join(__appdir, 'data', 'products.json');
-
   try {
     const id = uuid.v4().replaceAll('-', '');
     req.body.id = id;
     products.push(req.body);
 
-    fs.writeFileSync(filePath, JSON.stringify(products));
+    fileHandler('data', 'products.json', products);
 
-    res.status(201).json(new ResponseModel({ statusCode: 201, data: req.body }));
+    res
+      .status(201)
+      .json(new ResponseModel({ statusCode: 201, data: req.body }));
   } catch (error) {
-    res.status(500).json(new ResponseModel({ statusCode: 500, error: 'Internal Server Error' }));
+    res
+      .status(500)
+      .json(
+        new ResponseModel({ statusCode: 500, error: 'Internal Server Error' })
+      );
   }
 };
 
@@ -64,9 +75,15 @@ const updateProduct = (req, res) => {
     product.price = req.body.price ?? product.price;
     product.weight = req.body.weight ?? product.weight;
 
+    fileHandler('data', 'products.json', products);
+
     res.status(204).end();
   } catch (error) {
-    res.status(500).json(new ResponseModel({ statusCode: 500, error: 'Internal Server Error' }));
+    res
+      .status(500)
+      .json(
+        new ResponseModel({ statusCode: 500, error: 'Internal Server Error' })
+      );
   }
 };
 
@@ -88,9 +105,15 @@ const updateProductPrice = (req, res) => {
 
     product.price = req.body.price ?? product.price;
 
+    fileHandler('data', 'products.json', products);
+
     res.status(204).end();
   } catch (error) {
-    res.status(500).json(new ResponseModel({ statusCode: 500, error: 'Internal Server Error' }));
+    res
+      .status(500)
+      .json(
+        new ResponseModel({ statusCode: 500, error: 'Internal Server Error' })
+      );
   }
 };
 
@@ -112,9 +135,14 @@ const deleteProduct = (req, res) => {
 
     products.splice(products.indexOf(product), 1);
 
+    fileHandler('data', 'products.json', products);
     res.status(204).end();
   } catch (error) {
-    res.status(500).json(new ResponseModel({ statusCode: 500, error: 'Internal Server Error' }));
+    res
+      .status(500)
+      .json(
+        new ResponseModel({ statusCode: 500, error: 'Internal Server Error' })
+      );
   }
 };
 
