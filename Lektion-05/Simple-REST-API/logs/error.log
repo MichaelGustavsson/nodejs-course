@@ -3,3 +3,14 @@ Method: GET Url: /api/v1/products/731085fc268c4a94966bcd1bc7c0e99 Date: 2024-04-
 Method: GET Url: /api/v1/products/731085fc268c4a94966bcd1bc7c0e99 Date: 2024-04-24 Time: 09:49:04 Success: false - Message: Kunde inte hitta någon produkt med id 731085fc268c4a94966bcd1bc7c0e99
 Method: GET Url: /api/v1/customers/8f1ef4d754f3458196a86077b4f45528 Date: 2024-04-24 Time: 11:39:46 Success: true - Message: Kunde inte hitta någon kund med id: 8f1ef4d754f3458196a86077b4f45528
 Method: PUT Url: /api/v1/customers/e854c5b36f794708a713297c3ba597e0 Date: 2024-04-24 Time: 11:41:05 Success: true - Message: Cannot read properties of undefined (reading 'street')
+Method: GET Url: /api/v1/customers/e854c5b36f794708a713297c3ba597e0 Date: 2024-04-24 Time: 11:47:24 Success: true - Message: FindCustomer funkar inte!
+Method: GET Url: /api/v1/customers/e854c5b36f794708a713297c3ba597e0 Date: 2024-04-24 Time: 11:47:51 Success: true - Message: FindCustomer funkar inte!
+Method: GET Url: /api/v1/customers/e854c5b36f794708a713297c3ba597e0 Date: 2024-04-24 Time: 11:48:04 Success: true - Message: FindCustomer funkar inte!
+Method: GET Url: /api/v1/customers/e854c5b36f794708a713297c3ba597e0 Date: 2024-04-24 Time: 11:49:31 Success: true - Message: FindCustomer funkar inte!
+Method: GET Url: /api/v1/customers/e854c5b36f794708a713297c3ba597e0 Date: 2024-04-24 Time: 11:51:01 Success: true - Message: FindCustomer funkar inte!
+Method: GET Url: /api/v1/customers/e854c5b36f794708a713297c3ba597e Date: 2024-04-24 Time: 11:53:35 Success: true - Message: FindCustomer funkar inte!
+Method: GET Url: /api/v1/customers/e854c5b36f794708a713297c3ba597e Date: 2024-04-24 Time: 11:54:10 Success: true - Message: next is not defined
+Method: GET Url: /api/v1/customers/e854c5b36f794708a713297c3ba597e Date: 2024-04-24 Time: 11:56:01 Success: true - Message: Cannot read properties of undefined (reading 'params')
+Method: GET Url: /api/v1/customers/e854c5b36f794708a713297c3ba597e Date: 2024-04-24 Time: 11:56:36 Success: true - Message: Kunde inte hitta någon kund med id: e854c5b36f794708a713297c3ba597e
+Method: GET Url: /api/v1/customers/e854c5b36f794708a713297c3ba597e Date: 2024-04-24 Time: 12:04:58 Success: true - Message: Kunde inte hitta någon kund med id: e854c5b36f794708a713297c3ba597e
+Method: GET Url: /api/v1/customers/e854c5b36f794708a713297c3ba597e Date: 2024-04-24 Time: 12:05:26 Success: true - Message: Kunde inte hitta någon kund med id: e854c5b36f794708a713297c3ba597e
