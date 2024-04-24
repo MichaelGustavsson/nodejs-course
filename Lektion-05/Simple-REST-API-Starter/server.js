@@ -13,6 +13,11 @@ const app = express();
 // Middleware...
 app.use(express.json());
 app.use(cors());
+
+if (process.env.NODE_ENV === 'development') {
+  app.use(logger);
+}
+
 app.use('/api/v1/products', productsRouter);
 
 // Catch all url...
@@ -22,10 +27,6 @@ app.all('*', (req, res, next) => {
 
 // Central felhantering...
 app.use(errorHandler);
-
-if (process.env.NODE_ENV === 'development') {
-  app.use(logger);
-}
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () =>
