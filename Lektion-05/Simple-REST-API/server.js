@@ -10,6 +10,9 @@ dotenv.config({ path: './config/config.env' });
 
 const app = express();
 
+// Placera rotsökvägen i node.js globala objekt...
+global.__appdir = __dirname;
+
 // Middleware...
 app.use(express.json());
 app.use(cors());

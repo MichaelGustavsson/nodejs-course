@@ -1,5 +1,7 @@
+const fs = require('fs');
+const path = require('path');
 const uuid = require('uuid');
-const products = require('../model/Products');
+const products = require('../data/products.json');
 const ResponseModel = require('../utilities/ResponseModel');
 const ErrorResponse = require('../utilities/ErrorResponseModel');
 
@@ -27,10 +29,14 @@ const findProduct = (req, res, next) => {
 };
 
 const addProduct = (req, res) => {
+  const filePath = path.join(__appdir, 'data', 'products.json');
+
   try {
     const id = uuid.v4().replaceAll('-', '');
     req.body.id = id;
     products.push(req.body);
+
+    fs.writeFileSync(filePath, JSON.stringify(products));
 
     res.status(201).json(new ResponseModel({ statusCode: 201, data: req.body }));
   } catch (error) {
