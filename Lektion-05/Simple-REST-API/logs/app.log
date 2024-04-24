@@ -49,3 +49,13 @@ GET /api/v1/customers/e854c5b36f794708a713297c3ba597e - 2024-04-24 12:02:57
 GET /api/v1/customers/e854c5b36f794708a713297c3ba597e - 2024-04-24 12:04:40
 GET /api/v1/customers/e854c5b36f794708a713297c3ba597e - 2024-04-24 12:05:26
 GET /api/v1/customers/e854c5b36f794708a713297c3ba597e0 - 2024-04-24 12:05:32
+GET /api/v1/customers - 2024-04-24 14:01:54
+GET /api/v1/customers/659af2eb301084f201936372 - 2024-04-24 14:02:10
+POST /api/v1/customers - 2024-04-24 14:02:16
+PUT /api/v1/customers/11ccabcc9aba4fb9a0230c55794dd355 - 2024-04-24 14:02:28
+PATCH /api/v1/customers/11ccabcc9aba4fb9a0230c55794dd355 - 2024-04-24 14:02:36
+DELETE /api/v1/customers/11ccabcc9aba4fb9a0230c55794dd355 - 2024-04-24 14:02:43
+GET /api/v1/customers/659af2eb301084f201936372 - 2024-04-24 14:02:48
+GET /api/v1/customers/11ccabcc9aba4fb9a0230c55794dd355 - 2024-04-24 14:03:02
+PUT /api/v1/customers/11ccabcc9aba4fb9a0230c55794dd355 - 2024-04-24 14:03:10
+PATCH /api/v1/customers/11ccabcc9aba4fb9a0230c55794dd355 - 2024-04-24 14:03:14

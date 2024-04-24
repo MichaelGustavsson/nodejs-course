@@ -14,3 +14,6 @@ Method: GET Url: /api/v1/customers/e854c5b36f794708a713297c3ba597e Date: 2024-04
 Method: GET Url: /api/v1/customers/e854c5b36f794708a713297c3ba597e Date: 2024-04-24 Time: 11:56:36 Success: true - Message: Kunde inte hitta någon kund med id: e854c5b36f794708a713297c3ba597e
 Method: GET Url: /api/v1/customers/e854c5b36f794708a713297c3ba597e Date: 2024-04-24 Time: 12:04:58 Success: true - Message: Kunde inte hitta någon kund med id: e854c5b36f794708a713297c3ba597e
 Method: GET Url: /api/v1/customers/e854c5b36f794708a713297c3ba597e Date: 2024-04-24 Time: 12:05:26 Success: true - Message: Kunde inte hitta någon kund med id: e854c5b36f794708a713297c3ba597e
+Method: GET Url: /api/v1/customers/11ccabcc9aba4fb9a0230c55794dd355 Date: 2024-04-24 Time: 14:03:02 Success: true - Message: Kunde inte hitta någon kund med id: 11ccabcc9aba4fb9a0230c55794dd355
+Method: PUT Url: /api/v1/customers/11ccabcc9aba4fb9a0230c55794dd355 Date: 2024-04-24 Time: 14:03:10 Success: true - Message: Kunde inte hitta någon kund med id: 11ccabcc9aba4fb9a0230c55794dd355
+Method: PATCH Url: /api/v1/customers/11ccabcc9aba4fb9a0230c55794dd355 Date: 2024-04-24 Time: 14:03:14 Success: true - Message: Kunde inte hitta någon kund med id: 11ccabcc9aba4fb9a0230c55794dd355

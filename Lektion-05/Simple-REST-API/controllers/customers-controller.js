@@ -19,7 +19,6 @@ module.exports.listCustomers = (req, res, next) => {
 
 module.exports.findCustomer = (req, res, next) => {
   try {
-    // const customer = customers.find((c) => c.id === req.params.id);
     const customer = getCustomer(req, res, next);
 
     if (customer) {
@@ -79,20 +78,14 @@ module.exports.updateCustomer = (req, res, next) => {
 
 module.exports.updateCustomerActive = (req, res, next) => {
   try {
-    const customer = customers.find((c) => c.id === req.params.id);
+    const customer = getCustomer(req, res, next);
 
-    if (!customer) {
-      return next(
-        new ErrorResponse(
-          `Kunde inte hitta någon kund med id: ${req.params.id}`
-        )
-      );
+    if (customer) {
+      customer.active = req.body.active ?? customer.active;
+
+      fileHandler(folder, file, customers);
+      res.status(204).end();
     }
-
-    customer.active = req.body.active ?? customer.active;
-
-    fileHandler(folder, file, customers);
-    res.status(204).end();
   } catch (error) {
     next(new ErrorResponse(error.message, 500));
   }
@@ -100,20 +93,14 @@ module.exports.updateCustomerActive = (req, res, next) => {
 
 module.exports.deleteCustomer = (req, res, next) => {
   try {
-    const customer = customers.find((c) => c.id === req.params.id);
+    const customer = getCustomer(req, res, next);
 
-    if (!customer) {
-      return next(
-        new ErrorResponse(
-          `Kunde inte hitta någon kund med id: ${req.params.id}`
-        )
-      );
+    if (customer) {
+      customers.splice(customers.indexOf(customer), 1);
+
+      fileHandler(folder, file, customers);
+      res.status(204).end();
     }
-
-    customers.splice(customers.indexOf(customer), 1);
-
-    fileHandler(folder, file, customers);
-    res.status(204).end();
   } catch (error) {
     next(new ErrorResponse(error.message, 500));
   }

@@ -1,0 +1,311 @@
+{
+	"info": {
+		"_postman_id": "033afd7a-705d-471a-87d5-7c5af0f5f82e",
+		"name": "Node-Backend-Course",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19056603"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Hämta alla produkter",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/products/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Hämta produkt med id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/products/731085fc268c4a94966bcd1bc7c0e993",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"731085fc268c4a94966bcd1bc7c0e993"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lägg till ny produkt",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Finska pinnar\",\n    \"price\": 39.9,\n    \"weight\": \"230g\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/products",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Uppdatera en produkt",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Finska Puckar\",        \n    \"price\": 4.95,\n    \"weight\": \"350g\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/products/b4382b087f8b453897a68c907d9332f8",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"b4382b087f8b453897a68c907d9332f8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Uppdatera priset på en produkt",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Finska Pinnar\",        \n    \"price\": 14.95\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/products/b4382b087f8b453897a68c907d9332f8",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"b4382b087f8b453897a68c907d9332f8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ta bort en produkt",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/products/1814089f9a524b9cbe3dc1189ee8da5a",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"1814089f9a524b9cbe3dc1189ee8da5a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customers",
+			"item": [
+				{
+					"name": "Hämta alla kunder",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/customers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Hämta kund med id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/customers/e854c5b36f794708a713297c3ba597e0",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								"e854c5b36f794708a713297c3ba597e0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lägg till ny kund",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Nisses Lanthandel\",\n    \"address\": {\n        \"street\": \"Torget centrum\",\n        \"postalCode\": \"444 31\",\n        \"city\": \"Stenungsund\"\n    },\n    \"phone\": \"0303-44556\",\n    \"email\": \"nils@gmail.com\",\n    \"contactPerson\": \"Nils\",\n    \"comment\": \"Billigast fisk i stan\",\n    \"active\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/customers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Uppdatera en kund",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Nisses Lanthandel\",    \n    \"phone\": \"0303-11556\",\n    \"email\": \"nils.nilsson@gmail.com\",\n    \"contactPerson\": \"Nils Nilsson\",\n    \"comment\": \"Billigast fisk i stan\",\n    \"active\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/customers/e854c5b36f794708a713297c3ba597e0",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								"e854c5b36f794708a713297c3ba597e0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Uppdatera en kunds status",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Olles partihandel\",\n    \"active\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/customers/8f1ef4d754f3458196a86077b4f45528",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								"8f1ef4d754f3458196a86077b4f45528"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ta bort en kund",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/customers/8f1ef4d754f3458196a86077b4f45528",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								"8f1ef4d754f3458196a86077b4f45528"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
