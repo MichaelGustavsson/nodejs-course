@@ -21,4 +21,4 @@ class ResponseModel {
   }
 }
 
-module.exports = ResponseModel;
+export default ResponseModel;

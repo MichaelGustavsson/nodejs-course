@@ -25,3 +25,6 @@ Method: GET Url: /api/v1/products/731085fc268c4a94966bcd1bc7c0e99 Date: 2024-04-
 Method: GET Url: /api/v2/products/ Date: 2024-04-25 Time: 09:57:38 Success: false - Message: Kunde inte hitta resursen /api/v2/products/
 Method: PATCH Url: /api/v1/products/b4382b087f8b453897a68c907d9332f Date: 2024-04-25 Time: 10:03:39 Success: true - Message: Kunde inte hitta någon produkt med id: b4382b087f8b453897a68c907d9332f
 Method: PATCH Url: /api/v2/products/b4382b087f8b453897a68c907d9332f8 Date: 2024-04-25 Time: 10:03:52 Success: false - Message: Kunde inte hitta resursen /api/v2/products/b4382b087f8b453897a68c907d9332f8
+Method: GET Url: /api/v1/products/731085fc268c4a94966bcd1bc7c0e99 Date: 2024-04-25 Time: 13:37:27 Success: true - Message: Kunde inte hitta någon produkt med id: 731085fc268c4a94966bcd1bc7c0e99
+Method: GET Url: /api/v1/products/de3605f491174d658e59a2b4e854348 Date: 2024-04-25 Time: 13:44:22 Success: true - Message: Kunde inte hitta någon produkt med id: de3605f491174d658e59a2b4e854348
+Method: GET Url: /api/v2/products/de3605f491174d658e59a2b4e854348 Date: 2024-04-25 Time: 13:44:31 Success: false - Message: Kunde inte hitta resursen /api/v2/products/de3605f491174d658e59a2b4e854348

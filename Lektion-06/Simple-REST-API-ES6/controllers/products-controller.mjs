@@ -1,9 +1,22 @@
 import ErrorResponse from '../utilities/ErrorResponseModel.mjs';
 import { v4 as uuidv4 } from 'uuid';
-const products = require('../data/products.json');
-const ResponseModel = require('../utilities/ResponseModel');
+
+// 1:a alternativet...
+import products from '../data/products.json' with { type: 'json' };
+
+// 2:a alternativet
+// import { createRequire } from 'module';
+// const require = createRequire(import.meta.url);
+// const products = require('../data/products.json');
+
+// 3:e alternativet
+// Använd fs och readFile(...)
+// JSON.parse(strängen)
+import ResponseModel from '../utilities/ResponseModel.mjs';
+import fileHandler from '../utilities/fileHandler.mjs'
+// const ResponseModel = require('../utilities/ResponseModel');
 // const ErrorResponse = require('../utilities/ErrorResponseModel.mjs');
-const fileHandler = require('../utilities/fileHandler');
+// const fileHandler = require('../utilities/fileHandler');
 
 const listProducts = (req, res, next) => {
   res.status(200).json(new ResponseModel({ statusCode: 200, data: products }));

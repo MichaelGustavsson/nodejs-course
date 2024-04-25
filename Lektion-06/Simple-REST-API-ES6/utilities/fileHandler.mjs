@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
 const writeFile = (folderName, fileName, data) => {
   try {
@@ -10,4 +10,4 @@ const writeFile = (folderName, fileName, data) => {
   }
 };
 
-module.exports = writeFile;
+export default writeFile;

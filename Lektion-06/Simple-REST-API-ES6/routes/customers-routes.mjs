@@ -1,12 +1,13 @@
-const express = require('express');
-const {
+import express from 'express';
+
+import {
   addCustomer,
   deleteCustomer,
   listCustomers,
   findCustomer,
   updateCustomer,
   updateCustomerActive,
-} = require('../controllers/customers-controller');
+} from '../controllers/customers-controller.mjs';
 
 const router = express.Router();
 
@@ -19,4 +20,4 @@ router
   .patch(updateCustomerActive)
   .delete(deleteCustomer);
 
-module.exports = router;
+export default router;

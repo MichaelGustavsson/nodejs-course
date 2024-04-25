@@ -1,17 +1,17 @@
-const customers = require('../data/customers.json');
-const uuid = require('uuid');
-const ResponseModel = require('../utilities/ResponseModel');
-const ErrorResponse = require('../utilities/ErrorResponseModel.mjs');
-const fileHandler = require('../utilities/fileHandler');
+import customers from '../data/customers.json' with {type:"json"};
+import {v4 as uuidv4} from 'uuid';
+import ResponseModel from '../utilities/ResponseModel.mjs';
+import ErrorResponse from '../utilities/ErrorResponseModel.mjs';
+import fileHandler from '../utilities/fileHandler.mjs';
 
 const folder = 'data';
 const file = 'customers.json';
 
-module.exports.listCustomers = (req, res, next) => {
+export const listCustomers = (req, res, next) => {
   res.status(200).json(new ResponseModel({ statusCode: 200, data: customers }));
 };
 
-exports.findCustomer = (req, res, next) => {
+export const findCustomer = (req, res, next) => {
   const customer = getCustomer(req, res, next);
 
   if (customer) {
@@ -21,8 +21,8 @@ exports.findCustomer = (req, res, next) => {
   }
 };
 
-module.exports.addCustomer = (req, res, next) => {
-  const id = uuid.v4().replaceAll('-', '');
+export const addCustomer = (req, res, next) => {
+  const id = uuidv4().replaceAll('-', '');
   req.body.id = id;
 
   customers.push(req.body);
@@ -32,7 +32,7 @@ module.exports.addCustomer = (req, res, next) => {
   res.status(201).json(new ResponseModel({ statusCode: 201, data: req.body }));
 };
 
-module.exports.updateCustomer = (req, res, next) => {
+export const updateCustomer = (req, res, next) => {
   const customer = getCustomer(req, res, next);
 
   if (customer) {
@@ -56,7 +56,7 @@ module.exports.updateCustomer = (req, res, next) => {
   }
 };
 
-module.exports.updateCustomerActive = (req, res, next) => {
+export const updateCustomerActive = (req, res, next) => {
   const customer = getCustomer(req, res, next);
 
   if (customer) {
@@ -67,7 +67,7 @@ module.exports.updateCustomerActive = (req, res, next) => {
   }
 };
 
-module.exports.deleteCustomer = (req, res, next) => {
+export const deleteCustomer = (req, res, next) => {
   const customer = getCustomer(req, res, next);
 
   if (customer) {

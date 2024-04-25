@@ -5,7 +5,7 @@ import cors from 'cors';
 import logger from './middleware/logger.mjs';
 import errorHandler from './middleware/errorHandler.mjs';
 import productsRouter from './routes/products-routes.mjs';
-import customersRouter from './routes/customers-routes.js';
+import customersRouter from './routes/customers-routes.mjs';
 import ErrorResponse from './utilities/ErrorResponseModel.mjs';
 
 // Lösningen på att få tag i __dirname för ES6 modul laddaren...
