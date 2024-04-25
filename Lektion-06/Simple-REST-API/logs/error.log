@@ -1,0 +1,27 @@
+Method: GET Url: /api/v1/products/731085fc268c4a94966bcd1bc7c0e99 Date: 2024-04-24 Time: 09:39:12 Success: false - Message: Kunde inte hitta någon produkt med id 731085fc268c4a94966bcd1bc7c0e99
+Method: GET Url: /api/v1/products/731085fc268c4a94966bcd1bc7c0e99 Date: 2024-04-24 Time: 09:40:20 Success: false - Message: Kunde inte hitta någon produkt med id 731085fc268c4a94966bcd1bc7c0e99
+Method: GET Url: /api/v1/products/731085fc268c4a94966bcd1bc7c0e99 Date: 2024-04-24 Time: 09:49:04 Success: false - Message: Kunde inte hitta någon produkt med id 731085fc268c4a94966bcd1bc7c0e99
+Method: GET Url: /api/v1/customers/8f1ef4d754f3458196a86077b4f45528 Date: 2024-04-24 Time: 11:39:46 Success: true - Message: Kunde inte hitta någon kund med id: 8f1ef4d754f3458196a86077b4f45528
+Method: PUT Url: /api/v1/customers/e854c5b36f794708a713297c3ba597e0 Date: 2024-04-24 Time: 11:41:05 Success: true - Message: Cannot read properties of undefined (reading 'street')
+Method: GET Url: /api/v1/customers/e854c5b36f794708a713297c3ba597e0 Date: 2024-04-24 Time: 11:47:24 Success: true - Message: FindCustomer funkar inte!
+Method: GET Url: /api/v1/customers/e854c5b36f794708a713297c3ba597e0 Date: 2024-04-24 Time: 11:47:51 Success: true - Message: FindCustomer funkar inte!
+Method: GET Url: /api/v1/customers/e854c5b36f794708a713297c3ba597e0 Date: 2024-04-24 Time: 11:48:04 Success: true - Message: FindCustomer funkar inte!
+Method: GET Url: /api/v1/customers/e854c5b36f794708a713297c3ba597e0 Date: 2024-04-24 Time: 11:49:31 Success: true - Message: FindCustomer funkar inte!
+Method: GET Url: /api/v1/customers/e854c5b36f794708a713297c3ba597e0 Date: 2024-04-24 Time: 11:51:01 Success: true - Message: FindCustomer funkar inte!
+Method: GET Url: /api/v1/customers/e854c5b36f794708a713297c3ba597e Date: 2024-04-24 Time: 11:53:35 Success: true - Message: FindCustomer funkar inte!
+Method: GET Url: /api/v1/customers/e854c5b36f794708a713297c3ba597e Date: 2024-04-24 Time: 11:54:10 Success: true - Message: next is not defined
+Method: GET Url: /api/v1/customers/e854c5b36f794708a713297c3ba597e Date: 2024-04-24 Time: 11:56:01 Success: true - Message: Cannot read properties of undefined (reading 'params')
+Method: GET Url: /api/v1/customers/e854c5b36f794708a713297c3ba597e Date: 2024-04-24 Time: 11:56:36 Success: true - Message: Kunde inte hitta någon kund med id: e854c5b36f794708a713297c3ba597e
+Method: GET Url: /api/v1/customers/e854c5b36f794708a713297c3ba597e Date: 2024-04-24 Time: 12:04:58 Success: true - Message: Kunde inte hitta någon kund med id: e854c5b36f794708a713297c3ba597e
+Method: GET Url: /api/v1/customers/e854c5b36f794708a713297c3ba597e Date: 2024-04-24 Time: 12:05:26 Success: true - Message: Kunde inte hitta någon kund med id: e854c5b36f794708a713297c3ba597e
+Method: GET Url: /api/v1/customers/11ccabcc9aba4fb9a0230c55794dd355 Date: 2024-04-24 Time: 14:03:02 Success: true - Message: Kunde inte hitta någon kund med id: 11ccabcc9aba4fb9a0230c55794dd355
+Method: PUT Url: /api/v1/customers/11ccabcc9aba4fb9a0230c55794dd355 Date: 2024-04-24 Time: 14:03:10 Success: true - Message: Kunde inte hitta någon kund med id: 11ccabcc9aba4fb9a0230c55794dd355
+Method: PATCH Url: /api/v1/customers/11ccabcc9aba4fb9a0230c55794dd355 Date: 2024-04-24 Time: 14:03:14 Success: true - Message: Kunde inte hitta någon kund med id: 11ccabcc9aba4fb9a0230c55794dd355
+Method: GET Url: /api/v1/products/731085fc268c4a94966bcd1bc7c0e993 Date: 2024-04-25 Time: 09:27:08 Success: false - Message: Det gick galet
+Method: GET Url: /api/v1/products/731085fc268c4a94966bcd1bc7c0e99 Date: 2024-04-25 Time: 09:46:02 Success: true - Message: Kunde inte hitta någon produkt med id: 731085fc268c4a94966bcd1bc7c0e99
+Method: GET Url: /api/v2/products/ Date: 2024-04-25 Time: 09:53:01 Success: false - Message: Kunde inte hitta resursen /api/v2/products/
+Method: GET Url: /api/v2/products/ Date: 2024-04-25 Time: 09:55:56 Success: false - Message: Kunde inte hitta resursen /api/v2/products/
+Method: GET Url: /api/v1/products/731085fc268c4a94966bcd1bc7c0e99 Date: 2024-04-25 Time: 09:56:45 Success: true - Message: Kunde inte hitta någon produkt med id: 731085fc268c4a94966bcd1bc7c0e99
+Method: GET Url: /api/v2/products/ Date: 2024-04-25 Time: 09:57:38 Success: false - Message: Kunde inte hitta resursen /api/v2/products/
+Method: PATCH Url: /api/v1/products/b4382b087f8b453897a68c907d9332f Date: 2024-04-25 Time: 10:03:39 Success: true - Message: Kunde inte hitta någon produkt med id: b4382b087f8b453897a68c907d9332f
+Method: PATCH Url: /api/v2/products/b4382b087f8b453897a68c907d9332f8 Date: 2024-04-25 Time: 10:03:52 Success: false - Message: Kunde inte hitta resursen /api/v2/products/b4382b087f8b453897a68c907d9332f8
