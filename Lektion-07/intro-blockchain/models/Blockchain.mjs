@@ -43,16 +43,16 @@ export default class Blockchain {
     const DIFFICULTY_LEVEL = process.env.DIFFICULTY;
     let nonce = 0;
     let hash = this.hashBlock(timestamp, previousBlockHash, data, nonce);
-
+    let currentTime;
     while (
       hash.substring(0, DIFFICULTY_LEVEL) !== '0'.repeat(DIFFICULTY_LEVEL)
     ) {
       nonce++;
-      hash = this.hashBlock(timestamp, previousBlockHash, data, nonce);
-      console.log(hash);
+      currentTime = Date.now();
+
+      hash = this.hashBlock(currentTime, previousBlockHash, data, nonce);
     }
 
-    console.log(nonce);
     return nonce;
   }
 }
