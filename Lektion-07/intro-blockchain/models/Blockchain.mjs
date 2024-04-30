@@ -5,13 +5,14 @@ export default class Blockchain {
   constructor() {
     this.chain = [];
     // Skapa vårt genisis block...
-    this.createBlock('0', '0', []);
+    this.createBlock(Date.now(), '0', '0', []);
   }
 
   // Metod för att lägga till ett nytt block i kedjan...
-  createBlock(previousBlockHash, currentBlockHash, data) {
+  createBlock(timestamp, previousBlockHash, currentBlockHash, data) {
     // Skapa blocket...
     const block = new Block(
+      timestamp,
       this.chain.length + 1,
       previousBlockHash,
       currentBlockHash,
@@ -27,10 +28,31 @@ export default class Blockchain {
     return this.chain.at(-1);
   }
 
-  hashBlock(previousBlockHash, currentBlockData) {
-    const stringToHash = previousBlockHash + JSON.stringify(currentBlockData);
+  hashBlock(timestamp, previousBlockHash, currentBlockData, nonce) {
+    const stringToHash =
+      timestamp.toString() +
+      previousBlockHash +
+      JSON.stringify(currentBlockData) +
+      nonce;
     const hash = createHash(stringToHash);
-    console.log(hash);
+
     return hash;
+  }
+
+  proofOfWork(timestamp, previousBlockHash, data) {
+    const DIFFICULTY_LEVEL = process.env.DIFFICULTY;
+    let nonce = 0;
+    let hash = this.hashBlock(timestamp, previousBlockHash, data, nonce);
+
+    while (
+      hash.substring(0, DIFFICULTY_LEVEL) !== '0'.repeat(DIFFICULTY_LEVEL)
+    ) {
+      nonce++;
+      hash = this.hashBlock(timestamp, previousBlockHash, data, nonce);
+      console.log(hash);
+    }
+
+    console.log(nonce);
+    return nonce;
   }
 }
