@@ -15,6 +15,8 @@ export const registerNode = (req, res, next) => {
     blockchain.nodeUrl !== node.nodeUrl
   ) {
     blockchain.memberNodes.push(node.nodeUrl);
+    // Synkronisering, skicka till den nya medlemmen/noden samma medlemmar/noder som jag har
+    syncMembers(node.nodeUrl);
 
     res.status(201).json({
       success: true,
@@ -27,5 +29,26 @@ export const registerNode = (req, res, next) => {
       statusCode: 400,
       data: { message: `Node ${node.nodeUrl} är redan registrerad` },
     });
+  }
+};
+
+const syncMembers = (url) => {
+  // Skapa en array av alla mina medlemmar/noder samt lägga till mig själv...
+  const members = [...blockchain.memberNodes, blockchain.nodeUrl];
+  // Gå igenom varje medlem som finnns i members arrayen
+  // Sedan skicka till varje medlem listan av medlemmar
+  try {
+    members.forEach(async (member) => {
+      const body = { nodeUrl: member };
+      await fetch(`${url}/api/v1/members/register-node`, {
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+    });
+  } catch (error) {
+    console.log(error);
   }
 };
