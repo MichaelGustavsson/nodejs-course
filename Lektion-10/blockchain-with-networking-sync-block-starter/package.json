@@ -1,0 +1,25 @@
+{
+  "name": "intro-blockchain",
+  "version": "1.0.0",
+  "description": "My first blockchain",
+  "main": "server.mjs",
+  "scripts": {
+    "start": "node server.mjs 5001 http://localhost:5001",
+    "dev": "nodemon server.mjs 5001 http://localhost:5001",
+    "node-1": "nodemon server.mjs 5001 http://localhost:5001",
+    "node-2": "nodemon server.mjs 5002 http://localhost:5002",
+    "node-3": "nodemon server.mjs 5003 http://localhost:5003"
+  },
+  "author": "Michael Gustavsson",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@vitest/ui": "^1.5.2",
+    "nodemon": "^3.1.0",
+    "vitest": "^1.5.2"
+  }
+}
