@@ -10,7 +10,15 @@ describe('Block', () => {
   const nonce = 1;
   const difficulty = 1;
 
-  const block = new Block(timestamp, hash, lastHash, nonce, difficulty, data);
+  const block = new Block({
+    timestamp,
+    hash,
+    lastHash,
+    nonce,
+    difficulty,
+    data,
+  });
+  // const block = new Block(timestamp, hash, lastHash, nonce, difficulty, data);
 
   describe('Properties', () => {
     it('should have a timestamp property', () => {
