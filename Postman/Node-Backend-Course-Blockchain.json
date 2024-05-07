@@ -1,0 +1,118 @@
+{
+	"info": {
+		"_postman_id": "77035b95-9809-45a9-a95c-37446082c153",
+		"name": "Node-Backend-Course-Blockchain",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "19056603"
+	},
+	"item": [
+		{
+			"name": "Transactions",
+			"item": [
+				{
+					"name": "Add transaction",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": 100,\n    \"sender\": \"Michael\",\n    \"recipient\": \"Emma\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5001/api/v1/transactions/transaction"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Members",
+			"item": [
+				{
+					"name": "Registrera en medlem/node",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nodeUrl\": \"http://localhost:5002\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5001/api/v1/members/register-node"
+					},
+					"response": []
+				},
+				{
+					"name": "Lista medlemmar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5001/api/v1/members"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Blockchain",
+			"item": [
+				{
+					"name": "Concensus",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5002/api/v1/blockchain/concensus"
+					},
+					"response": []
+				},
+				{
+					"name": "Skapa ett block",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productName\":\"Surdegsbröd\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5001/api/v1/blockchain/mine"
+					},
+					"response": []
+				},
+				{
+					"name": "Lista block",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productName\": \"Bulle\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5001/api/v1/blockchain"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
