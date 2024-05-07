@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { GENESIS_DATA } from '../utilities/config.mjs';
+import { GENESIS_DATA, MINE_RATE } from '../utilities/config.mjs';
 import Block from './Block.mjs';
 
 describe('Block', () => {
@@ -71,8 +71,37 @@ describe('Block', () => {
   describe('Methods', () => {
     describe('createGenesis() function', () => {
       const genesisBlock = Block.createGenesis();
+
       it('should return an instance of Block class', () => {
         expect(genesisBlock instanceof Block).toBeTruthy();
+      });
+
+      it('should return the genesis data', () => {
+        expect(genesisBlock).toEqual(GENESIS_DATA);
+      });
+    });
+
+    describe('changeDifficultyLevel() function', () => {
+      it('should raise the difficulty level for quickly mined block', () => {
+        expect(
+          Block.adjustDifficultyLevel(block, block.timestamp + MINE_RATE - 100)
+        ).toEqual(block.difficulty + 1);
+      });
+
+      it('should lower the difficulty level for slowly mined block', () => {
+        expect(
+          Block.adjustDifficultyLevel(block, block.timestamp + MINE_RATE + 100)
+        ).toEqual(block.difficulty - 1);
+      });
+    });
+
+    describe('mineBlock() function', () => {
+      const lastBlock = Block.createGenesis();
+      const data = 'Wienerbröd';
+      const minedBlock = Block.mineBlock(lastBlock, data);
+
+      it('should return a new instance of Block class', () => {
+        expect(minedBlock instanceof Block).toBeTruthy();
       });
     });
   });
