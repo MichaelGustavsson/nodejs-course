@@ -6,14 +6,16 @@ const getBlockchain = (req, res, next) => {
 
 const mineBlock = async (req, res, next) => {
   const lastBlock = blockchain.getLastBlock();
+  const data = blockchain.pendingTransactions;
   const { nonce, difficulty, timestamp } = blockchain.proofOfWork(
-    lastBlock.currentBlockHash
+    lastBlock.currentBlockHash,
+    data
   );
 
   const currentBlockHash = blockchain.hashBlock(
     timestamp,
     lastBlock.currentBlockHash,
-    blockchain.pendingTransactions,
+    data,
     nonce,
     difficulty
   );
@@ -22,7 +24,7 @@ const mineBlock = async (req, res, next) => {
     timestamp,
     lastBlock.currentBlockHash,
     currentBlockHash,
-    blockchain.pendingTransactions,
+    data,
     nonce,
     difficulty
   );
@@ -37,6 +39,19 @@ const mineBlock = async (req, res, next) => {
       },
     });
   });
+
+  const reward = { amount: 3, sender: '0000', recipient: blockchain.nodeUrl };
+
+  await fetch(
+    `${blockchain.nodeUrl}/api/v1/transactions/transaction/broadcast`,
+    {
+      method: 'POST',
+      body: JSON.stringify(reward),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  );
 
   res.status(200).json({
     success: true,

@@ -74,6 +74,7 @@ export default class Blockchain {
     // Gå igenom varje block i kedjan och validera dem.
     for (let i = 1; i < blockchain.length; i++) {
       const block = blockchain[i];
+
       const previousBlock = blockchain[i - 1];
 
       const hash = this.hashBlock(

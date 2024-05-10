@@ -74,6 +74,8 @@ export default class Blockchain {
     const MINE_RATE = process.env.MINE_RATE;
     let { difficulty } = lastBlock;
 
+    console.log(+difficulty);
+
     if (difficulty < 1) return 1;
 
     return timestamp - lastBlock.timestamp > MINE_RATE

@@ -18,4 +18,6 @@ app.use('/api/v1/blockchain', blockchainRouter);
 app.use('/api/v1/transactions', transactionRouter);
 app.use('/api/v1/members', memberRouter);
 
-app.listen(PORT, () => console.log(`Server is running on port: ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Server is running on port: ${PORT}`);
+});
