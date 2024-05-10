@@ -1,0 +1,23 @@
+[
+  {
+    "timestamp": 1715192041087,
+    "blockIndex": 1,
+    "previousBlockHash": "0",
+    "currentBlockHash": "0",
+    "data": []
+  },
+  {
+    "timestamp": 1715192045334,
+    "blockIndex": 2,
+    "previousBlockHash": "0",
+    "currentBlockHash": "d4d6dc9f8b1f8a1fc9b35c00440fbe7bb3a40b40c78d86c09725ffa80ba255c8",
+    "data": { "productName": "Wienerbröd" }
+  },
+  {
+    "timestamp": 1715192081824,
+    "blockIndex": 3,
+    "previousBlockHash": "d4d6dc9f8b1f8a1fc9b35c00440fbe7bb3a40b40c78d86c09725ffa80ba255c8",
+    "currentBlockHash": "caf3c965e1532c04620286c2099a014003beff172cfb3c6e912c790e0ff72076",
+    "data": { "productName": "Wienerbröd" }
+  }
+]
