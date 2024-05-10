@@ -1,6 +1,6 @@
 import express from 'express';
 import {
-  createBlock,
+  mineBlock,
   getBlockchain,
   synchronizeChain,
   updateChain,
@@ -11,7 +11,7 @@ const router = express.Router();
 // Definierar url och vilken metod som anropas
 // för att delegera till korrekt controller funktion...
 router.route('/').get(getBlockchain);
-router.route('/mine').post(createBlock);
+router.route('/mine').get(mineBlock);
 router.route('/concensus').get(synchronizeChain);
 router.route('/block/broadcast').post(updateChain);
 

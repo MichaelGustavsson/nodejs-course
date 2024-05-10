@@ -31,20 +31,24 @@ export default class Blockchain {
       this.chain.length + 1,
       previousBlockHash,
       currentBlockHash,
+      // this.pendingTransactions,
       data,
       nonce,
       difficulty
     );
 
+    this.pendingTransactions = [];
     this.chain.push(block);
 
     return block;
   }
 
-  addTransaction(amount, sender, recipient) {
-    const transaction = new Transaction(amount, sender, recipient);
-    this.pendingTransactions.push(transaction);
+  createTransaction(amount, sender, recipient) {
+    return new Transaction(amount, sender, recipient);
+  }
 
+  addTransaction(transaction) {
+    this.pendingTransactions.push(transaction);
     return this.getLastBlock().blockIndex + 1;
   }
 

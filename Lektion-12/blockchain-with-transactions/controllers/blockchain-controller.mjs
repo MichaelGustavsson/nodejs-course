@@ -4,7 +4,7 @@ const getBlockchain = (req, res, next) => {
   res.status(200).json({ success: true, data: blockchain });
 };
 
-const createBlock = async (req, res, next) => {
+const mineBlock = async (req, res, next) => {
   const lastBlock = blockchain.getLastBlock();
   const { nonce, difficulty, timestamp } = blockchain.proofOfWork(
     lastBlock.currentBlockHash
@@ -13,6 +13,7 @@ const createBlock = async (req, res, next) => {
   const currentBlockHash = blockchain.hashBlock(
     timestamp,
     lastBlock.currentBlockHash,
+    blockchain.pendingTransactions,
     nonce,
     difficulty
   );
@@ -21,7 +22,7 @@ const createBlock = async (req, res, next) => {
     timestamp,
     lastBlock.currentBlockHash,
     currentBlockHash,
-    [],
+    blockchain.pendingTransactions,
     nonce,
     difficulty
   );
@@ -37,8 +38,9 @@ const createBlock = async (req, res, next) => {
     });
   });
 
-  res.status(201).json({
+  res.status(200).json({
     success: true,
+    statusCode: 200,
     data: { message: 'Block skapat och distribuerat', block },
   });
 };
@@ -51,6 +53,7 @@ const updateChain = (req, res, next) => {
 
   if (hash && index) {
     blockchain.chain.push(block);
+    blockchain.pendingTransactions = [];
     res.status(201).json({
       success: true,
       statusCode: 201,
@@ -105,4 +108,4 @@ const synchronizeChain = (req, res, next) => {
   });
 };
 
-export { createBlock, getBlockchain, synchronizeChain, updateChain };
+export { mineBlock, getBlockchain, synchronizeChain, updateChain };
