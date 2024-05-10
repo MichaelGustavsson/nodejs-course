@@ -1,11 +1,14 @@
 import { createHash } from '../utilities/crypto-lib.mjs';
 import Block from './Block.mjs';
+import Transaction from './Transaction.mjs';
 
 export default class Blockchain {
   constructor() {
     this.chain = [];
     // Array för att hålla reda på vilka medlemmar(noder) som är registrerade på denna server(blockkedja)
     this.memberNodes = [];
+    // Array för att lagra pågående transaktioner innan ett block skapas...
+    this.pendingTransactions = [];
     // Variabel som håller koll på vår egen nods url(namn)...
     this.nodeUrl = process.argv[3];
 
@@ -36,6 +39,13 @@ export default class Blockchain {
     this.chain.push(block);
 
     return block;
+  }
+
+  addTransaction(amount, sender, recipient) {
+    const transaction = new Transaction(amount, sender, recipient);
+    this.pendingTransactions.push(transaction);
+
+    return this.getLastBlock().blockIndex + 1;
   }
 
   getLastBlock() {
