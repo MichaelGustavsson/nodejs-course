@@ -3,10 +3,12 @@ import Block from '../models/Block.mjs';
 import Blockchain from '../models/Blockchain.mjs';
 
 describe('Blockchain', () => {
-  let blockchain;
+  let blockchain, blockchain2, originalChain;
 
   beforeEach(() => {
     blockchain = new Blockchain();
+    blockchain2 = new Blockchain();
+    originalChain = blockchain.chain;
   });
 
   // test 1 kolla så att blockkedjan har eller inte har egenskapen "chain"
@@ -35,6 +37,70 @@ describe('Blockchain', () => {
       it('should return false', () => {
         blockchain.chain[0] = { data: 'faulty genesis' };
         expect(Blockchain.validateChain(blockchain.chain)).toBe(false);
+      });
+    });
+
+    // Steg 2. Validera en kedja med korrekt genesis block samt flera block i kedjan...
+    describe('when the chain starts with a correct genesis block and has multiple blocks', () => {
+      beforeEach(() => {
+        blockchain.addBlock({ data: 'Wienerbröd' });
+        blockchain.addBlock({ data: 'Rulltårta' });
+        blockchain.addBlock({ data: 'Princess tårta' });
+      });
+
+      describe('and one of the blocks lastHash has changed', () => {
+        it('should return false', () => {
+          blockchain.chain[1].lastHash = 'knas-hash';
+          expect(Blockchain.validateChain(blockchain.chain)).toBe(false);
+        });
+      });
+
+      describe('and the chain contains a block with invalid data', () => {
+        it('should return false', () => {
+          blockchain.chain[2].data = 'FELAKTIG INFORMATION';
+          expect(Blockchain.validateChain(blockchain.chain)).toBe(false);
+        });
+      });
+
+      describe('and the chain is valid', () => {
+        it('should return true', () => {
+          expect(Blockchain.validateChain(blockchain.chain)).toBe(true);
+        });
+      });
+    });
+  });
+
+  describe('Replace chain', () => {
+    describe('when the new chain is shorter', () => {
+      it('should not replace the chain', () => {
+        blockchain2.chain[0] = { info: 'chain' };
+        blockchain.replaceChain(blockchain2.chain);
+
+        expect(blockchain.chain).toEqual(originalChain);
+      });
+    });
+
+    describe('when the new chain is longer', () => {
+      beforeEach(() => {
+        blockchain2.addBlock({ data: 'Wienerbröd' });
+        blockchain2.addBlock({ data: 'Rulltårta' });
+        blockchain2.addBlock({ data: 'Princess tårta' });
+      });
+
+      describe('and the chain is invalid', () => {
+        it('should not replace the chain', () => {
+          blockchain2.chain[1].hash = 'dummy-hash';
+          blockchain.replaceChain(blockchain2.chain);
+
+          expect(blockchain.chain).toEqual(originalChain);
+        });
+      });
+
+      describe('and the chain is valid', () => {
+        it('should replace the chain', () => {
+          blockchain.replaceChain(blockchain2.chain);
+          expect(blockchain.chain).toBe(blockchain2.chain);
+        });
       });
     });
   });
