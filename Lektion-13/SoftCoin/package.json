@@ -14,7 +14,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "hex-to-binary": "^1.0.1"
   },
   "devDependencies": {
     "@vitest/ui": "^1.6.0",

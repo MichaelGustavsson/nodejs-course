@@ -30,14 +30,21 @@ export default class Blockchain {
       return false;
 
     for (let i = 1; i < chain.length; i++) {
-      const { timestamp, lastHash, hash, data } = chain.at(i);
+      const { timestamp, lastHash, hash, data, nonce, difficulty } =
+        chain.at(i);
       const currentLastHash = chain[i - 1].hash;
 
       // Regel 2. Föregående blocks hash måste stämma överens med aktuellt blocks lastHash...
       if (lastHash !== currentLastHash) return false;
 
       // Regel 3. Kontrollera så att blocket är ok...
-      const validHash = createHash(timestamp, lastHash, data);
+      const validHash = createHash(
+        timestamp,
+        lastHash,
+        data,
+        nonce,
+        difficulty
+      );
       if (hash !== validHash) return false;
     }
 
