@@ -13,13 +13,15 @@ export default class Blockchain {
       data: data,
     });
     this.chain.push(newBlock);
+    return newBlock;
   }
 
   replaceChain(chain) {
+    console.log('INSIDE REPLACE CHAIN');
     if (chain.length <= this.chain.length) return;
-
+    console.log('BEFORE VALIDATE CHAIN');
     if (!Blockchain.validateChain(chain)) return;
-
+    console.log('AFTER VALIDATE CHAIN');
     this.chain = chain;
   }
 
