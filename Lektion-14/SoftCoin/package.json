@@ -1,0 +1,25 @@
+{
+  "name": "softcoin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.mjs",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "vitest",
+    "test:ui": "vitest --ui"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "hex-to-binary": "^1.0.1"
+  },
+  "devDependencies": {
+    "@vitest/ui": "^1.6.0",
+    "nodemon": "^3.1.0",
+    "vitest": "^1.6.0"
+  }
+}
