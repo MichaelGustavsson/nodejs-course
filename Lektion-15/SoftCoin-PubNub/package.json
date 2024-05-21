@@ -1,0 +1,29 @@
+{
+  "name": "softcoin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.mjs",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "dev": "nodemon server.mjs",
+    "dev-node": "cross-env GENERATE_NODE_PORT='true' nodemon server.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "hex-to-binary": "^1.0.1",
+    "pubnub": "^8.1.0"
+  },
+  "devDependencies": {
+    "@vitest/ui": "^1.6.0",
+    "cross-env": "^7.0.3",
+    "nodemon": "^3.1.0",
+    "vitest": "^1.6.0"
+  }
+}

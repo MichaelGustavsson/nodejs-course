@@ -13,8 +13,6 @@ export default class RedisServer {
     this.publisher = redis.createClient();
     this.subscriber = redis.createClient();
 
-    // Glöm inte att prenumera på rätt! kanal...
-    // this.subscriber.subscribe(CHANNELS.DEMO);
     this.loadChannels();
 
     this.subscriber.on('message', (channel, message) =>
@@ -28,6 +26,7 @@ export default class RedisServer {
       message: JSON.stringify(this.blockchain.chain),
     });
   }
+
   // Hjälp metoder...
   loadChannels() {
     Object.values(CHANNELS).forEach((channel) =>
@@ -36,10 +35,6 @@ export default class RedisServer {
   }
 
   messageHandler(channel, message) {
-    // console.log(
-    //   `Meddelande mottaget på kanalen: ${channel} och meddelandet är: ${message}`
-    // );
-
     const msg = JSON.parse(message);
 
     if (channel === CHANNELS.BLOCKCHAIN) {
@@ -52,9 +47,3 @@ export default class RedisServer {
     this.publisher.publish(channel, message);
   }
 }
-
-// const test = new RedisServer();
-// setTimeout(() => {
-//   console.log('Är in timeout');
-//   test.publisher.publish(CHANNELS.DEMO, 'Hej på Er!');
-// }, 1000);
