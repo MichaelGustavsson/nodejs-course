@@ -46,6 +46,8 @@ export default class Blockchain {
   validateChain(blockchain) {
     let isValid = true;
 
+    console.log('Inside validateChain');
+
     // Gå igenom varje block i kedjan och validera dem.
     for (let i = 1; i < blockchain.length; i++) {
       const block = blockchain[i];

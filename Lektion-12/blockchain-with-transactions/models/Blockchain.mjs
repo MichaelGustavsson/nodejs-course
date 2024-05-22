@@ -83,7 +83,13 @@ export default class Blockchain {
         block.data
       );
 
+      console.log('VALIDATE HASH', hash, block.currentBlockHash);
       if (hash !== block.currentBlockHash) isValid = false;
+      console.log(
+        'VALIDATE PREVIOUS HASH',
+        block.previousBlockHash,
+        previousBlock.currentBlockHash
+      );
       if (block.previousBlockHash !== previousBlock.currentBlockHash)
         isValid = false;
     }

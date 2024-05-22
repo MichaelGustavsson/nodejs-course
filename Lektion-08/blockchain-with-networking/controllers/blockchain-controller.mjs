@@ -40,11 +40,13 @@ const synchronizeChain = (req, res, next) => {
     if (response.ok) {
       const result = await response.json();
 
+      console.log(result.data.chain.lengt, maxLength);
       if (result.data.chain.length > maxLength) {
         maxLength = result.data.chain.length;
         longestChain = result.data.chain;
       }
 
+      console.log('Before if !longestChain');
       if (
         !longestChain ||
         (longestChain && !blockchain.validateChain(longestChain))
