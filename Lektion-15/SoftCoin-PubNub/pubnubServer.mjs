@@ -5,15 +5,8 @@ const CHANNELS = {
   BLOCKCHAIN: 'BLOCKCHAIN',
 };
 
-const credentials = {
-  publishKey: 'pub-c-76fa24ce-de96-4c76-b5f5-bcef48d3d20b',
-  subscribeKey: 'sub-c-5ced83b7-5714-4528-9038-5c0837d2fe18',
-  secretKey: 'sec-c-ZTA3ZDI4ZmItNDUyNC00NGJjLWJkMjAtNGI1N2Q2ODk0YWI4',
-  userId: 'michael-test',
-};
-
 export default class PubNubServer {
-  constructor({ blockchain }) {
+  constructor({ blockchain, credentials }) {
     this.blockchain = blockchain;
 
     this.pubnub = new PubNub(credentials);
