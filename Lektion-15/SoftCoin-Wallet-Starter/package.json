@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "hex-to-binary": "^1.0.1",
     "pubnub": "^8.1.0"
