@@ -1,35 +1,30 @@
-import { it, describe, expect, beforeEach } from 'vitest';
+import { it, describe, expect, beforeEach, vi } from 'vitest';
+import Transaction from '../models/Transaction.mjs';
 import Wallet from '../models/Wallet.mjs';
 import { verifySignature } from '../utilities/crypto-lib.mjs';
-import Transaction from '../models/Transaction.mjs';
 
 describe('Transaction', () => {
   let transaction, sender, recipient, amount;
 
   beforeEach(() => {
     sender = new Wallet();
-    recipient = 'recipient-dummy-address';
-    amount = 50;
-
+    recipient = 'recipient-address';
+    amount = 25;
     transaction = new Transaction({ sender, recipient, amount });
   });
 
-  describe('properties', () => {
+  describe('Properties', () => {
     it('should have a property named id', () => {
       expect(transaction).toHaveProperty('id');
     });
+  });
 
+  describe('OutputMap', () => {
     it('should have a property named outputMap', () => {
       expect(transaction).toHaveProperty('outputMap');
     });
 
-    it('should have a property named inputMap', () => {
-      expect(transaction).toHaveProperty('inputMap');
-    });
-  });
-
-  describe('outputMap()', () => {
-    it('should display the recipients balance', () => {
+    it('should output the recipients balance', () => {
       expect(transaction.outputMap[recipient]).toEqual(amount);
     });
 
@@ -40,17 +35,21 @@ describe('Transaction', () => {
     });
   });
 
-  describe('inputMap()', () => {
+  describe('InputMap', () => {
+    it('should have a property named input', () => {
+      expect(transaction).toHaveProperty('input');
+    });
+
     it('should have a property named timestamp', () => {
-      expect(transaction.inputMap).toHaveProperty('timestamp');
+      expect(transaction.input).toHaveProperty('timestamp');
     });
 
     it('should set the amount to the senders balance', () => {
-      expect(transaction.inputMap.amount).toEqual(sender.balance);
+      expect(transaction.input.amount).toEqual(sender.balance);
     });
 
     it('should set the address value to the senders publicKey', () => {
-      expect(transaction.inputMap.address).toEqual(sender.publicKey);
+      expect(transaction.input.address).toEqual(sender.publicKey);
     });
 
     it('should sign the input', () => {
@@ -58,32 +57,72 @@ describe('Transaction', () => {
         verifySignature({
           publicKey: sender.publicKey,
           data: transaction.outputMap,
-          signature: transaction.inputMap.signature,
+          signature: transaction.input.signature,
         })
       ).toBe(true);
     });
   });
 
-  describe('validate the transaction', () => {
+  describe('Validate transaction', () => {
     describe('when the transaction is valid', () => {
       it('should return true', () => {
         expect(Transaction.validate(transaction)).toBe(true);
       });
     });
-
     describe('when the transaction is invalid', () => {
-      describe('and the transactions outputMap value is invalid', () => {
+      describe('and the transaction outputMap value is invalid', () => {
         it('should return false', () => {
-          transaction.outputMap[sender.publicKey] = 99996699449393;
+          transaction.outputMap[sender.publicKey] = 89898989;
           expect(Transaction.validate(transaction)).toBe(false);
         });
       });
-      describe('and the transactions inputMap signature is invalid', () => {
+      describe('and the transaction input signature is invalid', () => {
         it('should return false', () => {
-          transaction.inputMap.signature = new Wallet().sign('Stendumt-gjort');
+          transaction.input.signature = new Wallet().sign('Dummy data');
           expect(Transaction.validate(transaction)).toBe(false);
         });
       });
     });
+  });
+
+  describe('Update transaction', () => {
+    let orgSignature, orgSenderOutput, nextRecipient, nextAmount;
+
+    beforeEach(() => {
+      orgSignature = transaction.input.signature;
+      orgSenderOutput = transaction.outputMap[sender.publicKey];
+      nextAmount = 25;
+      nextRecipient = 'Luke Skywalker';
+
+      transaction.update({
+        sender,
+        recipient: nextRecipient,
+        amount: nextAmount,
+      });
+    });
+
+    it('should display the amount for the next recipient', () => {
+      expect(transaction.outputMap[nextRecipient]).toEqual(nextAmount);
+    });
+
+    it('should withdraw the amount from the original sender output balance', () => {
+      expect(transaction.outputMap[sender.publicKey]).toEqual(
+        orgSenderOutput - nextAmount
+      );
+    });
+
+    it('should match the total output amount with the input amount', () => {
+      expect(
+        Object.values(transaction.outputMap).reduce(
+          (total, amount) => total + amount
+        )
+      ).toEqual(transaction.input.amount);
+    });
+
+    // it('should reassign the transaction', () => {
+    //   console.log('REASSIGN', transaction.input.signature);
+    //   console.log('REASSIGN', orgSignature);
+    //   expect(transaction.input.signature).not.toEqual(orgSignature);
+    // });
   });
 });

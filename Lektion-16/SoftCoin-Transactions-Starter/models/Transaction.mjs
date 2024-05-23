@@ -4,11 +4,41 @@ import { verifySignature } from '../utilities/crypto-lib.mjs';
 export default class Transaction {
   constructor({ sender, recipient, amount }) {
     this.id = uuidv4().replaceAll('-', '');
-    this.outputMap = this.createOutputMap({ sender, recipient, amount });
-    this.inputMap = this.createInputMap({ sender, outputMap: this.outputMap });
+    this.outputMap = this.createMap({ sender, recipient, amount });
+    this.input = this.createInput({ sender, outputMap: this.outputMap });
   }
 
-  createOutputMap({ sender, recipient, amount }) {
+  static validate(transaction) {
+    const {
+      input: { address, amount, signature },
+      outputMap,
+    } = transaction;
+
+    const outputTotal = Object.values(outputMap).reduce(
+      (total, amount) => total + amount
+    );
+
+    if (amount !== outputTotal) {
+      return false;
+    }
+
+    if (!verifySignature({ publicKey: address, data: outputMap, signature })) {
+      return false;
+    }
+
+    return true;
+  }
+
+  update({ sender, recipient, amount }) {
+    this.outputMap[recipient] = amount;
+
+    this.outputMap[sender.publicKey] =
+      this.outputMap[sender.publicKey] - amount;
+
+    this.input = this.createInput({ sender, outputMap: this.outputMap });
+  }
+
+  createMap({ sender, recipient, amount }) {
     const outputMap = {};
 
     outputMap[recipient] = amount;
@@ -17,30 +47,12 @@ export default class Transaction {
     return outputMap;
   }
 
-  createInputMap({ sender, outputMap }) {
+  createInput({ sender, outputMap }) {
     return {
       timestamp: Date.now(),
       amount: sender.balance,
       address: sender.publicKey,
       signature: sender.sign(outputMap),
     };
-  }
-  // Static methods...
-  static validate(transaction) {
-    const {
-      inputMap: { address, amount, signature },
-      outputMap,
-    } = transaction;
-
-    const outputTotal = Object.values(outputMap).reduce(
-      (total, amount) => total + amount
-    );
-
-    if (amount !== outputTotal) return false;
-
-    if (!verifySignature({ publicKey: address, data: outputMap, signature }))
-      return false;
-
-    return true;
   }
 }

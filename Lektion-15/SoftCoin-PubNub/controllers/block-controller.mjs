@@ -1,5 +1,6 @@
 import { pubnubServer } from '../server.mjs';
 import { blockchain } from '../server.mjs';
+
 export const mineBlock = (req, res, next) => {
   const data = req.body;
 
