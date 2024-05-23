@@ -1,3 +1,5 @@
+import Transaction from './Transaction.mjs';
+
 export default class TransactionPool {
   constructor() {
     this.transactionMap = {};
@@ -10,7 +12,6 @@ export default class TransactionPool {
   transactionExist({ address }) {
     const transactions = Object.values(this.transactionMap);
 
-    // console.log(transactions)
     return transactions.find(
       (transaction) => transaction.input.address === address
     );
