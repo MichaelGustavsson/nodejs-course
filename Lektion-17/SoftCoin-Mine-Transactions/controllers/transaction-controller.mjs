@@ -47,11 +47,9 @@ export const mineTransactions = (req, res, next) => {
 
   miner.mineTransaction();
 
-  res
-    .status(200)
-    .json({
-      success: true,
-      statusCode: 200,
-      data: 'Funkar faktiskt hyfsat just nu.',
-    });
+  res.status(200).json({
+    success: true,
+    statusCode: 200,
+    data: 'Funkar faktiskt hyfsat just nu.',
+  });
 };
