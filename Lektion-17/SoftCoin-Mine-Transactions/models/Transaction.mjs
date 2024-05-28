@@ -43,7 +43,11 @@ export default class Transaction {
     if (amount > this.outputMap[sender.publicKey])
       throw new Error('Not enough funds!');
 
-    this.outputMap[recipient] = amount;
+    if (!this.outputMap[recipient]) {
+      this.outputMap[recipient] = amount;
+    } else {
+      this.outputMap[recipient] = this.outputMap[recipient] + amount;
+    }
 
     this.outputMap[sender.publicKey] =
       this.outputMap[sender.publicKey] - amount;
