@@ -2,6 +2,7 @@ import { it, describe, expect, beforeEach } from 'vitest';
 import Transaction from '../models/Transaction.mjs';
 import Wallet from '../models/Wallet.mjs';
 import TransactionPool from '../models/TransactionPool.mjs';
+import Blockchain from '../models/Blockchain.mjs';
 
 describe('TransactionPool', () => {
   // sender = wallet...
@@ -71,6 +72,43 @@ describe('TransactionPool', () => {
       expect(transactionPool.validateTransactions()).toStrictEqual(
         transactions
       );
+    });
+  });
+
+  // Detta är en farlig metod. Den tar inte hänsyn till om det finns transaktioner
+  // som ännu inte är flyttade till ett block eller till blockkedjan...
+  describe('clearTransaction method', () => {
+    it('should clear the transactionPool', () => {
+      transactionPool.clearTransactions();
+      expect(transactionPool.transactionMap).toEqual({});
+    });
+  });
+
+  // En säkrare metod som kontrollerar om blockkedjan är uppdaterad med transaktionen/transaktionerna...
+  describe('clearBlockTransactions method', () => {
+    it('should clear the pool of existing blockchain transactions', () => {
+      const blockchain = new Blockchain();
+      const expectedMap = {};
+
+      // skapa fejk transaktioner...
+      for (let i = 0; i < 20; i++) {
+        const transaction = new Wallet().createTransaction({
+          recipient: 'Nils',
+          amount: 5,
+        });
+
+        transactionPool.addTransaction(transaction);
+
+        if (i % 2 === 0) {
+          blockchain.addBlock({ data: [transaction] });
+        } else {
+          expectedMap[transaction.id] = transaction;
+        }
+      }
+
+      transactionPool.clearBlockTransactions({ chain: blockchain.chain });
+
+      expect(transactionPool.transactionMap).toEqual(expectedMap);
     });
   });
 });

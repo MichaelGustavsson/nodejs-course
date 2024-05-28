@@ -16,7 +16,10 @@ export default class Miner {
       Transaction.transactionReward({ miner: this.wallet })
     );
     // 3. Skapa ett block med giltiga transaktioner och placera detta i blockkedjan...
+    this.blockchain.addBlock({ data: validTransactions });
     // 4. Distribuera blockkedjan till alla noder...
+    this.pubsub.broadcast();
     // 5. Rensa transaktionspoolen...
+    this.transactionPool.clearTransactions();
   }
 }
