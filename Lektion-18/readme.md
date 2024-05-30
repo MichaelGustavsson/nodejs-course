@@ -14,3 +14,7 @@ SUBSCRIBE*KEY=*'Prenumerationsnyckeln'\_
 SECRET*KEY=*'Privata nyckeln'\_
 
 USER*ID=*'Valfritt id kan vara ett namn'\_
+
+För att bekräfta att allt fungerar, öppna upp ett nytt terminalfönster och kör kommandot `npm test`för att köra vitest tester i projektet.
+
+Om allt går bra så bör alla tester visa grönt.
