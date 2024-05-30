@@ -35,25 +35,17 @@ export default class Wallet {
     }
 
     return hasAddedTransaction ? total : INITIAL_BALANCE + total;
-
-    /*
-    for (let i = 1; i < chain.length; i++) {
-      const block = chain[i];
-
-      // För varje block behöver gå igenom transaktionerna...
-      for (let transaction of block.data) {
-        const value = transaction.outputMap[address];
-
-        if (value) {
-          total += value;
-        }
-      }
-    }
-    */
   }
 
   // INSTANCE METHODS...
-  createTransaction({ recipient, amount }) {
+  createTransaction({ recipient, amount, chain }) {
+    if (chain) {
+      this.balance = Wallet.calculateBalance({
+        chain,
+        address: this.publicKey,
+      });
+    }
+
     if (amount > this.balance) throw new Error('Not enough funds!');
 
     return new Transaction({ sender: this, recipient, amount });

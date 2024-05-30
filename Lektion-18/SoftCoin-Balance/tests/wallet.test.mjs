@@ -74,6 +74,28 @@ describe('Wallet', () => {
         expect(transaction.outputMap[recipient]).toEqual(amount);
       });
     });
+
+    describe('and a chain is supplied', () => {
+      it('should call the Wallet.calculateBalance', () => {
+        const calculateBalanceMockFn = vi.fn();
+
+        // Spara undan den riktiga calculateBalance...
+        const originalCalculateBalance = Wallet.calculateBalance;
+        // Pekar om den riktiga calculateBalance till mockfunktionen...
+        Wallet.calculateBalance = calculateBalanceMockFn;
+
+        wallet.createTransaction({
+          recipient: 'Nils',
+          amount: 20,
+          chain: new Blockchain(),
+        });
+
+        expect(calculateBalanceMockFn).toHaveBeenCalled();
+
+        // Återställ ordningen och koppla tillbaka funktionen
+        Wallet.calculateBalance = originalCalculateBalance;
+      });
+    });
   });
 
   describe('Calculate the balance', () => {
