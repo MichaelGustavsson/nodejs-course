@@ -1,5 +1,7 @@
+import { MINING_REWARD, REWARD_ADDRESS } from '../config/settings.mjs';
 import { createHash } from '../utilities/crypto-lib.mjs';
 import Block from './Block.mjs';
+import Transaction from './Transaction.mjs';
 
 export default class Blockchain {
   constructor() {
@@ -16,13 +18,44 @@ export default class Blockchain {
     return newBlock;
   }
 
-  replaceChain(chain, callback) {
+  replaceChain(chain, shouldValidate, callback) {
     if (chain.length <= this.chain.length) return;
     if (!Blockchain.validateChain(chain)) return;
 
     if (callback) callback();
 
     this.chain = chain;
+  }
+
+  validateTransactionData({ chain }) {
+    for (let i = 1; i < chain.length; i++) {
+      const block = chain[i];
+      const transactionSet = new Set();
+      let counter = 0;
+
+      for (let transaction of block.data) {
+        if (transaction.inputMap.address === REWARD_ADDRESS.address) {
+          counter++;
+
+          if (counter > 1) return false;
+
+          if (Object.values(transaction.outputMap)[0] !== MINING_REWARD)
+            return false;
+        } else {
+          if (!Transaction.validate(transaction)) {
+            return false;
+          }
+
+          if (transactionSet.has(transaction)) {
+            return false;
+          } else {
+            transactionSet.add(transaction);
+          }
+        }
+      }
+    }
+
+    return true;
   }
 
   // Static methods...
