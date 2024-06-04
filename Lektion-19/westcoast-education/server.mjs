@@ -4,6 +4,7 @@ import authRouter from './routes/auth-routes.mjs';
 
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { errorHandler } from './middleware/errorHandler.mjs';
 
 // Konfigurerar dotenv...
 dotenv.config({ path: './config/config.env' });
@@ -18,6 +19,8 @@ const app = express();
 // Middleware...
 app.use(express.json());
 app.use('/api/v1/auth', authRouter);
+
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5010;
 

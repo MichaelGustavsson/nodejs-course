@@ -1,4 +1,5 @@
 import User from '../models/UserModel.mjs';
+import ErrorResponse from '../models/ErrorResponseModel.mjs';
 import { save, findUserByEmail, findUserById } from '../data/fileDb.mjs';
 import { generateToken, validatePassword } from '../utilities/security.mjs';
 
@@ -10,11 +11,9 @@ export const register = async (req, res, next) => {
 
   // Validering...
   if (!name || !email || !password) {
-    return res.status(400).json({
-      success: false,
-      statusCode: 400,
-      message: 'Användarnamn, e-post eller lösenord saknas',
-    });
+    return next(
+      new ErrorResponse('Användarnamn, e-post eller lösenord saknas', 400)
+    );
   }
 
   const user = new User(name, email, password, role ?? 'user');
@@ -32,11 +31,7 @@ export const login = async (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return res.status(400).json({
-      success: false,
-      statusCode: 400,
-      message: 'E-post och/eller lösenord saknas',
-    });
+    return next(new ErrorResponse('E-post och/eller lösenord saknas', 400));
   }
   try {
     // 2. Hämta användaren ifrån vår databas...
@@ -45,11 +40,7 @@ export const login = async (req, res, next) => {
     const isCorrect = await validatePassword(password, user.password);
 
     if (!isCorrect) {
-      return res.status(401).json({
-        success: false,
-        statusCode: 401,
-        message: 'Felaktig inloggning',
-      });
+      return next(new ErrorResponse('Felaktig inloggning', 401));
     }
     // 4. Generera ett nytt token och returnera det...
     return createAndSendToken(user.id, 200, res);
@@ -62,10 +53,10 @@ export const login = async (req, res, next) => {
 
 // @desc    Returnerar information om en inloggad användare
 // @route   GET /api/v1/auth/me
-// @access  PUBLIC
+// @access  PRIVATE
 export const getMe = async (req, res, next) => {
   try {
-    const user = await findUserById(req.id);
+    const user = await findUserById(req.user.id);
     res.status(200).json({ success: true, statusCode: 200, data: user });
   } catch (error) {
     return res
@@ -77,7 +68,6 @@ export const getMe = async (req, res, next) => {
 const createAndSendToken = (id, statusCode, res) => {
   // 1. Skapa ett token
   const token = generateToken(id);
-  console.log(token);
   // 2. Sätt ihop lite options
   const options = {
     expires: new Date(

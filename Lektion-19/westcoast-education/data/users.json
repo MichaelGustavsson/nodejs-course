@@ -1,18 +1,18 @@
 [
   {
-    "id": "f115560f28b94f739780858ee5211429",
-    "name": "Michael",
-    "email": "michael@gmail.com",
-    "password": "$2a$12$Hqv7ziP.gqQNpiHQ9GBxQ.6fqRPn51ao9POmFhYXs3xKE1u0RAWhO",
-    "role": "user",
-    "createdAt": 1717495062881
-  },
-  {
-    "id": "b7774739b0f34b96a1e8c8fa622a3b4e",
+    "id": "c299434e245743039b43964cf7d9d29d",
     "name": "Emma",
     "email": "emma@gmail.com",
-    "password": "$2a$12$4xW1G2tAxDjfQTcPJvYWT.onouu7saYol80TZUrus4/nSYgEDB8uK",
+    "password": "$2a$12$Et3EEIIv9jkBnYqagn/Br.p8UcaMiQpcDbUGKy5C/IijnQJME2/5C",
     "role": "user",
-    "createdAt": 1717498574895
+    "createdAt": 1717506881347
+  },
+  {
+    "id": "79e1d58b08a44857aea25f275b76f34f",
+    "name": "Michael",
+    "email": "michael@gmail.com",
+    "password": "$2a$12$19e2fb8X242IxZyvQfZVbemtBRRf6KN2NfXlmoHPI8R/L7nq5i3RC",
+    "role": "user",
+    "createdAt": 1717508314281
   }
 ]
