@@ -8,11 +8,11 @@
     "createdAt": 1717495062881
   },
   {
-    "id": "f9c89335f9ef42f7872338abe4607ad4",
-    "name": "Michael",
-    "email": "michael@gmail.com",
-    "password": "$2a$12$hfHy8n62e7Q9VzAYc3GvOOquUYiGs/C.fl888DjUWU6k/WsK6FZCC",
+    "id": "b7774739b0f34b96a1e8c8fa622a3b4e",
+    "name": "Emma",
+    "email": "emma@gmail.com",
+    "password": "$2a$12$4xW1G2tAxDjfQTcPJvYWT.onouu7saYol80TZUrus4/nSYgEDB8uK",
     "role": "user",
-    "createdAt": 1717495352260
+    "createdAt": 1717498574895
   }
 ]

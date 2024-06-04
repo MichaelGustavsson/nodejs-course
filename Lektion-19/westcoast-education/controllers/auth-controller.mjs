@@ -1,6 +1,6 @@
 import User from '../models/UserModel.mjs';
-import { save } from '../data/fileDb.mjs';
-import { generateToken } from '../utilities/security.mjs';
+import { save, findUserByEmail, findUserById } from '../data/fileDb.mjs';
+import { generateToken, validatePassword } from '../utilities/security.mjs';
 
 // @desc    Registrera en användare
 // @route   POST /api/v1/auth/register
@@ -27,19 +27,51 @@ export const register = async (req, res, next) => {
 // @desc    Logga in en användare
 // @route   POST /api/v1/auth/login
 // @access  PUBLIC
-export const login = (req, res, next) => {
-  res
-    .status(200)
-    .json({ success: true, statusCode: 200, message: 'login funkar!' });
+export const login = async (req, res, next) => {
+  // 1. Validera att vi får in e-post och lösenord...
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({
+      success: false,
+      statusCode: 400,
+      message: 'E-post och/eller lösenord saknas',
+    });
+  }
+  try {
+    // 2. Hämta användaren ifrån vår databas...
+    const user = await findUserByEmail(email);
+    // 3. Validera lösenordet.
+    const isCorrect = await validatePassword(password, user.password);
+
+    if (!isCorrect) {
+      return res.status(401).json({
+        success: false,
+        statusCode: 401,
+        message: 'Felaktig inloggning',
+      });
+    }
+    // 4. Generera ett nytt token och returnera det...
+    return createAndSendToken(user.id, 200, res);
+  } catch (error) {
+    res
+      .status(404)
+      .json({ success: false, statusCode: 404, message: error.message });
+  }
 };
 
 // @desc    Returnerar information om en inloggad användare
 // @route   GET /api/v1/auth/me
 // @access  PUBLIC
-export const getMe = (req, res, next) => {
-  res
-    .status(200)
-    .json({ success: true, statusCode: 200, message: 'getMe funkar!' });
+export const getMe = async (req, res, next) => {
+  try {
+    const user = await findUserById(req.id);
+    res.status(200).json({ success: true, statusCode: 200, data: user });
+  } catch (error) {
+    return res
+      .status(404)
+      .json({ success: false, statusCode: 404, message: error.message });
+  }
 };
 
 const createAndSendToken = (id, statusCode, res) => {
