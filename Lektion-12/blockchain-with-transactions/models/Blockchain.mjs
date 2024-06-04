@@ -94,6 +94,7 @@ export default class Blockchain {
         isValid = false;
     }
 
+    console.log('isValid:', isValid);
     return isValid;
   }
 

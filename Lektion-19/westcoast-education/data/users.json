@@ -1,0 +1,18 @@
+[
+  {
+    "id": "f115560f28b94f739780858ee5211429",
+    "name": "Michael",
+    "email": "michael@gmail.com",
+    "password": "$2a$12$Hqv7ziP.gqQNpiHQ9GBxQ.6fqRPn51ao9POmFhYXs3xKE1u0RAWhO",
+    "role": "user",
+    "createdAt": 1717495062881
+  },
+  {
+    "id": "f9c89335f9ef42f7872338abe4607ad4",
+    "name": "Michael",
+    "email": "michael@gmail.com",
+    "password": "$2a$12$hfHy8n62e7Q9VzAYc3GvOOquUYiGs/C.fl888DjUWU6k/WsK6FZCC",
+    "role": "user",
+    "createdAt": 1717495352260
+  }
+]
