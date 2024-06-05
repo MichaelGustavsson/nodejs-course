@@ -37,3 +37,17 @@ export const protect = async (req, res, next) => {
 
   next();
 };
+
+// authorize('admin','manager','user')
+export const authorize = (...roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      return res.status(403).json({
+        success: false,
+        statusCode: 403,
+        message: `Rollen ${req.user.role} har inte behörighet`,
+      });
+    }
+    next();
+  };
+};

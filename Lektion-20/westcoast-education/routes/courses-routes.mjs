@@ -1,5 +1,5 @@
 import express from 'express';
-import { protect } from '../middleware/authorization.mjs';
+import { protect, authorize } from '../middleware/authorization.mjs';
 import {
   addCourse,
   deleteCourse,
@@ -10,10 +10,10 @@ import {
 
 const router = express.Router();
 
-router.post('/', protect, addCourse);
-router.delete('/:id', protect, deleteCourse);
+router.post('/', protect, authorize('admin', 'manager'), addCourse);
+router.delete('/:id', protect, authorize('admin', 'manager'), deleteCourse);
 router.get('/:id', getCourse);
 router.get('/', getCourses);
-router.put('/:id', protect, updateCourse);
+router.put('/:id', protect, authorize('admin', 'manager'), updateCourse);
 
 export default router;
