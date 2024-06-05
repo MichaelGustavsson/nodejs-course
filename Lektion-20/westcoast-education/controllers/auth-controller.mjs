@@ -1,6 +1,7 @@
 import User from '../models/UserModel.mjs';
 import ErrorResponse from '../models/ErrorResponseModel.mjs';
 import { hashPassword } from '../utilities/security.mjs';
+import { sendEmail } from '../utilities/sendEmail.mjs';
 import {
   save,
   findUserByEmail,
@@ -106,6 +107,16 @@ export const forgotPassword = async (req, res, next) => {
 
   // 3. Skicka ett mejl för informationen för återställning...
   const message = `Använd länken för att återställa lösenordet ${resetUrl}`;
+
+  try {
+    await sendEmail({
+      recipient: 'michael.gustavsson@softtech-dev.se',
+      subject: 'Återställning av lösenord',
+      message,
+    });
+  } catch (error) {
+    next(new ErrorResponse(error.message, 500));
+  }
 
   // Returnera ett response
   res.status(200).json({ success: true, statusCode: 200, data: user });

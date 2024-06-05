@@ -23,10 +23,10 @@
     "id": "1295247beb384feaa8d44ca74901e27a",
     "name": "Emma",
     "email": "emma@gmail.com",
-    "password": "$2a$12$Wx1rxGNjohbR6PQHnL668OS4eAOeGRWbs9DKdYlUckgspZF9m0Tpa",
+    "password": "$2a$12$ZL7C/XNOLGrC/lSBm1y/J.8G56iIaJqm9VH92a.U1/f6dA9.uVNca",
     "role": "user",
     "createdAt": 1717577250798,
-    "resetPasswordToken": null,
-    "resetPasswordTokenExpire": null
+    "resetPasswordToken": "2085b326b48244e37090119b32d8d93dd9a56af085a6186d59d4d1ba3d4c391c",
+    "resetPasswordTokenExpire": "2024-06-05 14:07:09"
   }
 ]

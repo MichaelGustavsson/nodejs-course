@@ -35,7 +35,7 @@ export const findUserByResetPasswordToken = async (token) => {
   const users = await loadUsers();
   const user = users.find((user) => user.resetPasswordToken === token);
 
-  if (!user) {
+  if (!user || new Date(user.resetPasswordTokenExpire) < Date.now()) {
     throw new Error('Ogiltigt token', 400);
   }
 
