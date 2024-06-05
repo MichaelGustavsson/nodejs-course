@@ -1,26 +1,32 @@
 [
   {
-    "id": "8de1374ceabe4c7385dfc66ec0274dd1",
-    "name": "Michael",
-    "email": "michael@gmail.com",
-    "password": "$2a$12$dCY0f9dYH8GWfJtErN2qZehiH84BNL4NgiyuPIvznVseYNIrv/tn2",
-    "role": "admin",
-    "createdAt": 1717575822975
-  },
-  {
-    "id": "33c5f1025c1049a9bcaef0e67dd83244",
-    "name": "Emma",
-    "email": "emma@gmail.com",
-    "password": "$2a$12$0yZRlV9SAmjjS3FjnA5PouVWu8z6SsTToARCtjaFRj9ypZ6.oRJqm",
-    "role": "user",
-    "createdAt": 1717575848592
-  },
-  {
-    "id": "495c08bdda834f59b1e9013df1c68432",
+    "id": "0c32cad699f349e0b6b3612519d7a8df",
     "name": "Malin",
     "email": "malin@gmail.com",
-    "password": "$2a$12$qcqJmIZl2Q./DQw0FhVuu.gWD41fF3Ps4X/pzOcvBvR40177nw2dS",
+    "password": "$2a$12$sjV4FgNR6.9QlKQb.nmewelAPCKsbpGSnzI3NubK8cknxZ5vlS69m",
     "role": "manager",
-    "createdAt": 1717575874239
+    "createdAt": 1717577219569,
+    "resetPasswordToken": null,
+    "resetPasswordTokenExpire": null
+  },
+  {
+    "id": "64f930468a584edc92e7e55936921c5c",
+    "name": "Michael",
+    "email": "michael@gmail.com",
+    "password": "$2a$12$SiDxyMkLeLJBLo7TKx.44ePsF0Fmey/yAx0POrRdN3RsjjRVUDFhq",
+    "role": "admin",
+    "createdAt": 1717577234667,
+    "resetPasswordToken": null,
+    "resetPasswordTokenExpire": null
+  },
+  {
+    "id": "1295247beb384feaa8d44ca74901e27a",
+    "name": "Emma",
+    "email": "emma@gmail.com",
+    "password": "$2a$12$Wx1rxGNjohbR6PQHnL668OS4eAOeGRWbs9DKdYlUckgspZF9m0Tpa",
+    "role": "user",
+    "createdAt": 1717577250798,
+    "resetPasswordToken": null,
+    "resetPasswordTokenExpire": null
   }
 ]

@@ -1,6 +1,14 @@
 import User from '../models/UserModel.mjs';
 import ErrorResponse from '../models/ErrorResponseModel.mjs';
-import { save, findUserByEmail, findUserById } from '../data/fileDb.mjs';
+import { hashPassword } from '../utilities/security.mjs';
+import {
+  save,
+  findUserByEmail,
+  findUserById,
+  getResetPasswordToken,
+  findUserByResetPasswordToken,
+  updateUser,
+} from '../data/fileDb.mjs';
 import { generateToken, validatePassword } from '../utilities/security.mjs';
 
 // @desc    Registrera en användare
@@ -62,6 +70,75 @@ export const getMe = async (req, res, next) => {
     return res
       .status(404)
       .json({ success: false, statusCode: 404, message: error.message });
+  }
+};
+
+// @desc    Glömt lösenord
+// @route   GET /api/v1/auth/forgotpassword
+// @access  PUBLIC
+export const forgotPassword = async (req, res, next) => {
+  const email = req.body.email;
+
+  if (!email) {
+    return next(new ErrorResponse('E-post saknas för återställning', 400));
+  }
+
+  let user = await findUserByEmail(email);
+
+  if (!user) {
+    return next(
+      new ErrorResponse(
+        `Ingen användare med e-post adress ${email} kunde hittas`,
+        404
+      )
+    );
+  }
+
+  // 1. Skapa ett resetToken...
+  user = await getResetPasswordToken(user.id);
+
+  // 2. Skapa en url för reset meddelandet...
+  const resetUrl = `${req.protocol}://${req.get(
+    'host'
+  )}/api/v1/auth/resetpassword/${user.resetPasswordToken}`;
+
+  // http://localhost:5001/api/v1/auth/resetpassword/8440c6731a1dfd2fd46851e310bbcbe80a96d609079c03e5954a454af8cb3fbb
+
+  // 3. Skicka ett mejl för informationen för återställning...
+  const message = `Använd länken för att återställa lösenordet ${resetUrl}`;
+
+  // Returnera ett response
+  res.status(200).json({ success: true, statusCode: 200, data: user });
+};
+
+// @desc    Återställ lösenord
+// @route   PUT /api/v1/auth/resetpassword/:token
+// @access  PUBLIC
+export const resetPassword = async (req, res, next) => {
+  try {
+    const token = req.params.token;
+    const password = req.body.password;
+
+    if (!token || !password) {
+      return next(new ErrorResponse('Token och/eller lösenord saknas.', 400));
+    }
+
+    // 1. Hämta användaren baserat på resetPasswordToken...
+    const user = await findUserByResetPasswordToken(token);
+
+    // 2. Generera en ny hash för lösenordet...
+    const passwordHash = hashPassword(password);
+
+    // 3. Uppdatera user objektet med det nya lösenordet och återställa reset??? egenskaperna till null.
+    user.password = passwordHash;
+    user.resetPasswordToken = null;
+    user.resetPasswordTokenExpire = null;
+
+    await updateUser(user);
+
+    res.status(200).json({ success: true, statusCode: 200, data: user });
+  } catch (error) {
+    next(new ErrorResponse(error.message, 400));
   }
 };
 
