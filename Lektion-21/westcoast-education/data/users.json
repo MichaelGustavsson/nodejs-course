@@ -1,0 +1,42 @@
+[
+  {
+    "id": "0c32cad699f349e0b6b3612519d7a8df",
+    "name": "Malin",
+    "email": "malin@gmail.com",
+    "password": "$2a$12$sjV4FgNR6.9QlKQb.nmewelAPCKsbpGSnzI3NubK8cknxZ5vlS69m",
+    "role": "manager",
+    "createdAt": 1717577219569,
+    "resetPasswordToken": null,
+    "resetPasswordTokenExpire": null
+  },
+  {
+    "id": "1aa8255893c2467abc66eca403226a54",
+    "name": "Annika",
+    "email": "annika@gmail.com",
+    "password": "$2a$12$RzfhjHHQsDCK1gDWmPbei.LOMzHvlGQ8XSyhfxW614ZR4CZBHr77a",
+    "role": "user",
+    "createdAt": 1717596265730,
+    "resetPasswordToken": null,
+    "resetPasswordTokenExpire": null
+  },
+  {
+    "id": "1295247beb384feaa8d44ca74901e27a",
+    "name": "Emma",
+    "email": "emma@gmail.com",
+    "password": "$2a$12$ZL7C/XNOLGrC/lSBm1y/J.8G56iIaJqm9VH92a.U1/f6dA9.uVNca",
+    "role": "user",
+    "createdAt": 1717577250798,
+    "resetPasswordToken": null,
+    "resetPasswordTokenExpire": null
+  },
+  {
+    "id": "64f930468a584edc92e7e55936921c5c",
+    "name": "Michael",
+    "email": "michael.gustavsson@softtech-dev.se",
+    "password": "$2a$12$/jACNUtqvbtnlXRzI2LyzeMn8I9U24EXfb.JArwW.nJoi3h0pEG36",
+    "role": "admin",
+    "createdAt": 1717577234667,
+    "resetPasswordToken": null,
+    "resetPasswordTokenExpire": null
+  }
+]
