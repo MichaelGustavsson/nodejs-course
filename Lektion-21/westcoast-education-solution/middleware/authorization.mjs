@@ -1,7 +1,9 @@
 import jwt from 'jsonwebtoken';
-import { readFileAsync } from '../utilities/fileHandler.mjs';
+import User from '../models/UserModel.mjs';
+import { asyncHandler } from './asyncHandler.mjs';
+import ErrorResponse from '../models/ErrorResponseModel.mjs';
 
-export const protect = async (req, res, next) => {
+export const protect = asyncHandler(async (req, res, next) => {
   let token;
 
   // Verifiera att request header innehåller authorization nyckel och att
@@ -17,28 +19,21 @@ export const protect = async (req, res, next) => {
   // }
 
   if (!token) {
-    return res
-      .status(401)
-      .json({ success: false, statusCode: 401, message: 'Behörighet saknas.' });
+    next(new ErrorResponse('Behörighet saknas', 401));
   }
 
   // Verifiera token som vi hämtat ifrån header...
-  try {
-    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-    const users = await readFileAsync('data', 'users.json');
+  const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+  req.user = await User.findById(decodedToken.id);
 
-    // Placera funnen användare i request objektet som en egenskap user
-    req.user = users.find((u) => u.id === decodedToken.id);
-  } catch (error) {
-    return res
-      .status(401)
-      .json({ success: false, statusCode: 401, message: error.message });
+  if (!req.user) {
+    next(new ErrorResponse('Behörighet saknas', 401));
   }
 
   next();
-};
+});
 
-// authorize('admin','manager','user')
+// authorize('manager','user')
 export const authorize = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {

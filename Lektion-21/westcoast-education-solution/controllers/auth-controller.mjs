@@ -1,21 +1,22 @@
 import User from '../models/UserModel.mjs';
 import ErrorResponse from '../models/ErrorResponseModel.mjs';
+import { asyncHandler } from '../middleware/asyncHandler.mjs';
 
 // @desc    Registrera en användare
 // @route   POST /api/v1/auth/register
 // @access  PUBLIC
-export const register = async (req, res, next) => {
+export const register = asyncHandler(async (req, res, next) => {
   const { name, email, password, role } = req.body;
 
   const user = await User.create({ name, email, password, role });
 
   createAndSendToken(user, 201, res);
-};
+});
 
 // @desc    Logga in en användare
 // @route   POST /api/v1/auth/login
 // @access  PUBLIC
-export const login = async (req, res, next) => {
+export const login = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -38,18 +39,19 @@ export const login = async (req, res, next) => {
   }
 
   createAndSendToken(user, 200, res);
-};
+});
 
 // @desc    Returnerar information om en inloggad användare
 // @route   GET /api/v1/auth/me
 // @access  PRIVATE
-export const getMe = async (req, res, next) => {
+export const getMe = asyncHandler(async (req, res, next) => {
+  const user = await User.findById(req.user.id);
   res.status(200).json({
     success: true,
     statusCode: 200,
-    data: 'Visa information om inloggad användare fungerar',
+    data: user,
   });
-};
+});
 
 // @desc    Glömt lösenord
 // @route   GET /api/v1/auth/forgotpassword
