@@ -5,6 +5,7 @@ import colors from 'colors';
 import morgan from 'morgan';
 import authRouter from './routes/auth-routes.mjs';
 import coursesRouter from './routes/courses-routes.mjs';
+import usersRouter from './routes/user-routes.mjs';
 
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -28,6 +29,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/courses', coursesRouter);
+app.use('/api/v1/users', usersRouter);
 
 app.use(errorHandler);
 

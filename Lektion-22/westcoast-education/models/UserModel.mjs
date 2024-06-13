@@ -34,6 +34,10 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  course: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'Course',
+  },
 });
 
 // Skapa middleware för mongoose...

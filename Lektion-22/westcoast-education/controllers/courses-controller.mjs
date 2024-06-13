@@ -48,7 +48,7 @@ export const getCourses = asyncHandler(async (req, res, next) => {
   let query;
   let queryString;
   let requestQuery = { ...req.query };
-  const excludeFields = ['select', 'sort'];
+  const excludeFields = ['select', 'sort', 'page', 'pageSize'];
 
   excludeFields.forEach((field) => delete requestQuery[field]);
 
@@ -73,15 +73,57 @@ export const getCourses = asyncHandler(async (req, res, next) => {
     query = query.sort(sortBy);
   }
 
+  // Pagination...
+  const pages = await Course.countDocuments(JSON.parse(queryString));
+  const pageNo = parseInt(req.query.page) || 1;
+  const pageSize = parseInt(req.query.pageSize) || pages;
+  const page = (pageNo - 1) * pageSize;
+
+  // Vilken sida ska vi till och hur många dokument ska vi få med om det finns...
+  query = query.skip(page).limit(pageSize);
+
   // Kör frågan
   const courses = await query;
 
-  res.status(200).json({
-    success: true,
-    statusCode: 200,
-    items: courses.length,
-    data: courses,
-  });
+  const pagination = {};
+
+  console.log('PAGES', page * pageSize, pages);
+
+  pagination.totalDocuments = pages;
+  pagination.totalPages = Math.ceil(pages / pageSize);
+  // Finns det fler dokument att gå till?
+  if (page * pageSize < pages && pageSize < pages) {
+    pagination.next = {
+      page: pageNo + 1,
+      pageSize,
+    };
+  }
+
+  // Sidan vi befinner oss på är större än 0, ska vi kunna backa tillbaka
+  if (page > 0) {
+    pagination.prev = {
+      page: pageNo - 1,
+      pageSize,
+    };
+  }
+
+  // Kontrollera om vi ska presentera pagination...
+  if (req.query.page) {
+    return res.status(200).json({
+      success: true,
+      statusCode: 200,
+      items: courses.length,
+      pagination,
+      data: courses,
+    });
+  } else {
+    return res.status(200).json({
+      success: true,
+      statusCode: 200,
+      items: courses.length,
+      data: courses,
+    });
+  }
 });
 
 // @desc  Uppdatera en kurs
