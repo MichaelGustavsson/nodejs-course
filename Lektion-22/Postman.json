@@ -1,0 +1,376 @@
+{
+	"info": {
+		"_postman_id": "45d4d0ed-0a6d-4372-9f1d-9dffa84261d6",
+		"name": "Westcoast-Education",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "19056603"
+	},
+	"item": [
+		{
+			"name": "Users(Admin)",
+			"item": [
+				{
+					"name": "Lista alla användare",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{TOKEN}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}/users/"
+					},
+					"response": []
+				},
+				{
+					"name": "Hämta en användare på id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{TOKEN}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}/users/6666c3ca1fc31af3569015d9"
+					},
+					"response": []
+				},
+				{
+					"name": "Skapa en användare",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{TOKEN}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Malin\",\n    \"email\": \"malin@gmail.com\",\n    \"password\": \"Password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/users/"
+					},
+					"response": []
+				},
+				{
+					"name": "Uppdatera användare",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{TOKEN}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"role\": \"manager\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/users/666aeae571ca36789d8a01fa"
+					},
+					"response": []
+				},
+				{
+					"name": "Ta bort en användare",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{TOKEN}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/users/666adabccf3e2c698ea7402b"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Courses",
+			"item": [
+				{
+					"name": "Lägg till ny kurs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{TOKEN}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"courseNumber\": 222222,\n    \"title\": \"Skapa användargränssnitt med Swift UI\",\n    \"description\": \"Denna kurs kommer att lära dig att skapa trevliga och inbjudande användar gränssnitt med hjälp av Xcode, Swift och SwiftUI.\",\n    \"days\": 1,\n    \"tuition\": 6250,\n    \"level\": \"Medel\",\n    \"category\": [\"Mobile Development\"]\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/courses"
+					},
+					"response": []
+				},
+				{
+					"name": "Radera en kurs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{TOKEN}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{url}}/courses/66693de7d15242324c252942"
+					},
+					"response": []
+				},
+				{
+					"name": "Sök efter en kurs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}/courses/666aa5c5a459792c7840d6e"
+					},
+					"response": []
+				},
+				{
+					"name": "Hämta alla kurser",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}/courses"
+					},
+					"response": []
+				},
+				{
+					"name": "Uppdatera en kurs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{TOKEN}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"duration\": \"3 dagar\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/courses/666303474f99b93b63a639eb"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Registrera användare",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Olof\",\n    \"email\":\"olof@gmail.com\",\n    \"password\": \"Password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/auth/register"
+					},
+					"response": []
+				},
+				{
+					"name": "Logga in",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"TOKEN\",pm.response.json().token)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"michael@gmail.com\",\n    \"password\": \"Password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/auth/login"
+					},
+					"response": []
+				},
+				{
+					"name": "Hämta information om aktuell användare",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{TOKEN}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}/auth/me"
+					},
+					"response": []
+				},
+				{
+					"name": "Glömt lösenord",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"michael.gustavsson@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/auth/forgotpassword"
+					},
+					"response": []
+				},
+				{
+					"name": "Återställ lösenord",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/auth/resetpassword/49df07f0081c1277e1b6bbe89693e4136a6e0c6e6b48a11d4f52ca75d799c1e0"
+					},
+					"response": []
+				},
+				{
+					"name": "Uppdatera användarens uppgifter",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{TOKEN}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Michael Gustavsson\",\n    \"email\": \"michael.gustavsson@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/auth/updateuser/"
+					},
+					"response": []
+				},
+				{
+					"name": "Uppdatera lösenord",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{TOKEN}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"currentPassword\":\"Password\",\n    \"newPassword\": \"Password123!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/auth/updatepassword"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
