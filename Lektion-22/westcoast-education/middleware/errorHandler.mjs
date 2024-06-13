@@ -5,6 +5,11 @@ export const errorHandler = (err, req, res, next) => {
 
   error.message = err.message;
 
+  if (err.name === 'CastError') {
+    const message = `Resursen med id: ${err.value} kunde inte hittas.`;
+    error = new ErrorResponse(message, 404);
+  }
+
   if (err.code === 11000) {
     const message = `Resursen finns redan`;
     error = new ErrorResponse(message, 400);
