@@ -1,0 +1,594 @@
+{
+	"info": {
+		"_postman_id": "45d4d0ed-0a6d-4372-9f1d-9dffa84261d6",
+		"name": "Westcoast-Education",
+		"description": "Demo för kursen Node.js backend programmering",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19056603"
+	},
+	"item": [
+		{
+			"name": "Users(Admin)",
+			"item": [
+				{
+					"name": "Lista alla användare",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								""
+							]
+						},
+						"description": "Listar alla användare"
+					},
+					"response": []
+				},
+				{
+					"name": "Hämta en användare på id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users/6666c3ca1fc31af3569015d9",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"6666c3ca1fc31af3569015d9"
+							]
+						},
+						"description": "Letar upp en användare ur databasen baserat på användarens id."
+					},
+					"response": []
+				},
+				{
+					"name": "Skapa en användare",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Malin\",\n    \"email\": \"malin@gmail.com\",\n    \"password\": \"Password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								""
+							]
+						},
+						"description": "Lägger till en ny användare i databasen"
+					},
+					"response": []
+				},
+				{
+					"name": "Uppdatera användare",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"role\": \"manager\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/666aeae571ca36789d8a01fa",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"666aeae571ca36789d8a01fa"
+							]
+						},
+						"description": "Uppdaterar en användares uppgifter"
+					},
+					"response": []
+				},
+				{
+					"name": "Ta bort en användare",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/666adabccf3e2c698ea7402b",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"666adabccf3e2c698ea7402b"
+							]
+						},
+						"description": "Raderar en användare ur databasen"
+					},
+					"response": []
+				}
+			],
+			"description": "Hantering av användare, endast tillgängligt för _administratörer_"
+		},
+		{
+			"name": "Courses",
+			"item": [
+				{
+					"name": "Lägg till ny kurs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"courseNumber\": 222222,\n    \"title\": \"Skapa användargränssnitt med Swift UI\",\n    \"description\": \"Denna kurs kommer att lära dig att skapa trevliga och inbjudande användar gränssnitt med hjälp av Xcode, Swift och SwiftUI.\",\n    \"days\": 1,\n    \"tuition\": 6250,\n    \"level\": \"Medel\",\n    \"category\": [\"Mobile Development\"]\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/courses",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"courses"
+							]
+						},
+						"description": "Lägger till en ny kurs, måste vara _manager_ eller _administratör_"
+					},
+					"response": []
+				},
+				{
+					"name": "Radera en kurs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/courses/66693de7d15242324c252942",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"courses",
+								"66693de7d15242324c252942"
+							]
+						},
+						"description": "Raderar en kurs, måste vara _manager_ eller _administratör_"
+					},
+					"response": []
+				},
+				{
+					"name": "Sök efter en kurs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/courses/666aa5c5a459792c7840d6e",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"courses",
+								"666aa5c5a459792c7840d6e"
+							]
+						},
+						"description": "Söker efter en kurs på dess id."
+					},
+					"response": []
+				},
+				{
+					"name": "Hämta alla kurser",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/courses",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"courses"
+							]
+						},
+						"description": "Listar alla kurser"
+					},
+					"response": []
+				},
+				{
+					"name": "Uppdatera en kurs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"duration\": \"3 dagar\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/courses/666303474f99b93b63a639eb",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"courses",
+								"666303474f99b93b63a639eb"
+							]
+						},
+						"description": "Uppdaterar en kurs, måste vara _manager_ eller _administratör_"
+					},
+					"response": []
+				}
+			],
+			"description": "Hantering av kurser"
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Registrera användare",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Olof\",\n    \"email\":\"olof@gmail.com\",\n    \"password\": \"Password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						},
+						"description": "Registrerar en ny användare"
+					},
+					"response": []
+				},
+				{
+					"name": "Logga in",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"TOKEN\",pm.response.json().token)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"michael@gmail.com\",\n    \"password\": \"Password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "Loggar in en användare och skapar ett Bearer token som returneras."
+					},
+					"response": []
+				},
+				{
+					"name": "Hämta information om aktuell användare",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/auth/me",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"me"
+							]
+						},
+						"description": "Hämtar information om aktuellt inloggad användare. Kan endast användas av _inloggad användare_."
+					},
+					"response": []
+				},
+				{
+					"name": "Glömt lösenord",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"michael.gustavsson@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/forgotpassword",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"forgotpassword"
+							]
+						},
+						"description": "Skapar en länk för återställning av lösenord"
+					},
+					"response": []
+				},
+				{
+					"name": "Återställ lösenord",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/resetpassword/49df07f0081c1277e1b6bbe89693e4136a6e0c6e6b48a11d4f52ca75d799c1e0",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"resetpassword",
+								"49df07f0081c1277e1b6bbe89693e4136a6e0c6e6b48a11d4f52ca75d799c1e0"
+							]
+						},
+						"description": "Återställer lösenordet till det som användaren skickar in"
+					},
+					"response": []
+				},
+				{
+					"name": "Uppdatera användarens uppgifter",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Michael Gustavsson\",\n    \"email\": \"michael.gustavsson@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/updateuser/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"updateuser",
+								""
+							]
+						},
+						"description": "Uppdatering av användarens uppgifter"
+					},
+					"response": []
+				},
+				{
+					"name": "Uppdatera lösenord",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"currentPassword\":\"Password\",\n    \"newPassword\": \"Password123!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/updatepassword",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"updatepassword"
+							]
+						},
+						"description": "Uppdaterar användarens lösenord"
+					},
+					"response": []
+				}
+			],
+			"description": "Hanterar auktorisering av användare, som registrering, inloggning, återställning av lösenord osv..."
+		}
+	]
+}

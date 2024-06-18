@@ -1,0 +1,76 @@
+[
+  {
+    "courseNumber": 111222,
+    "title": "Bygga Webb Applikationer med Node.js och Express",
+    "description": "Med Node.js kan du använda dina kunskaper i JavaScript och bygga 'Full-Stack' applikationer. Denna kurs kommer att lära dig allt om 'routing','databaser'.",
+    "days": 2,
+    "tuition": 13500,
+    "level": "Medel",
+    "category": ["Web Development"]
+  },
+  {
+    "courseNumber": 111333,
+    "title": "RESTful Webbtjänster med Node.js och Express",
+    "description": "Node.js är ett enkelt och kraftfullt verktyg för 'backend' utveckling. Tillsammans med Express kan du skapa kraftfulla och skalbara APIer snabbt och enkelt.",
+    "days": 2,
+    "tuition": 13500,
+    "level": "Medel",
+    "category": ["Web Development"]
+  },
+  {
+    "courseNumber": 111444,
+    "title": "Bygga Webb applikationer med JavaScript",
+    "description": "JavaScript är DET språket idag med mer än 12 miljoner aktiva utvecklare och mer än 95% av alla websajter använder det. Med JavaScript kan vi skapa dynamiska och interaktiva Webb appliktioner tack vare dess flexibilitet, ramverk och moduler",
+    "days": 3,
+    "tuition": 19500,
+    "level": "Medel",
+    "category": ["Web Development"]
+  },
+  {
+    "courseNumber": 111555,
+    "title": "Introduktion till TypeScript",
+    "description": "Denna kurs kommer att lära dig nyckelbegreppen och hur du kommer igång med TypeScript och använda det för att bygga stora som små applikationer.",
+    "days": 2,
+    "tuition": 13500,
+    "level": "Nybörjare",
+    "category": ["Web Development"]
+  },
+  {
+    "courseNumber": 111666,
+    "title": "TypeScript för JavaScript utvecklare",
+    "description": "TypeScript är ett utomordentligt verktyg för att råda bot på avsaknad av struktur och ordning på JavaScript kod.",
+    "days": 1,
+    "tuition": 6250,
+    "level": "Nybörjare",
+    "category": ["Web Development"],
+    "inClass": false
+  },
+  {
+    "courseNumber": 111777,
+    "title": "Responsiv webb design",
+    "description": "Responsiv, mobil först webb design är en MÅSTE kunskap för alla webb utvecklare idag när alla har en 'smartphone'. I denna kurs kommer du att få lära dig hur du kan hantera olika storlekar på skärmar med bland annat media frågor.",
+    "days": 1,
+    "tuition": 6250,
+    "level": "Nybörjare",
+    "category": ["Web Development", "Mobile Development"],
+    "inClass": false
+  },
+  {
+    "courseNumber": 222111,
+    "title": "Swift för nybörjare",
+    "description": "Swift är ett modernt, snabbt och säkert programmeringspråk som snabbt blivit ett populärt språk för att skapa iOS och macOS applikation. Kursen ger en inblick i grunderna i Swift inklusive syntax, arbeta med data samt 'best practices'.",
+    "days": 1,
+    "tuition": 6250,
+    "level": "Nybörjare",
+    "category": ["Mobile Development"]
+  },
+  {
+    "courseNumber": 222222,
+    "title": "Skapa användargränssnitt med Swift UI",
+    "description": "Denna kurs kommer att lära dig att skapa trevliga och inbjudande användar gränssnitt med hjälp av Xcode, Swift och SwiftUI.",
+    "days": 1,
+    "tuition": 6250,
+    "level": "Medel",
+    "category": ["Mobile Development"]
+  }
+]
