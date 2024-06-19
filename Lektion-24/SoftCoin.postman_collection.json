@@ -1,0 +1,142 @@
+{
+	"info": {
+		"_postman_id": "5fda1d7d-4a9e-48c0-90a7-0900314f2799",
+		"name": "SoftCoin",
+		"description": "Ett exempel api över en enkel blockkedje applikation som använder PubNub för kommunikation mellan noder.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19056603"
+	},
+	"item": [
+		{
+			"name": "Blockchain",
+			"item": [
+				{
+					"name": "Lista block i blockkedjan",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/blockchain",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"blockchain"
+							]
+						},
+						"description": "Lista alla block i blockkedjan"
+					},
+					"response": []
+				}
+			],
+			"description": "Blockkedje relaterade frågor"
+		},
+		{
+			"name": "Wallet",
+			"item": [
+				{
+					"name": "Visa innehållet i plånboken",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/wallet/transactions",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wallet",
+								"transactions"
+							]
+						},
+						"description": "Visar transaktioner som är aktiva i den digitala plånboken"
+					},
+					"response": []
+				},
+				{
+					"name": "Skapa en transaktion",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"recipient\": \"Igor\",\n    \"amount\": 35\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/wallet/transaction",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wallet",
+								"transaction"
+							]
+						},
+						"description": "Skapar en ny transaktion i den digitala plånboken"
+					},
+					"response": []
+				},
+				{
+					"name": "Visa saldo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/wallet/info",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wallet",
+								"info"
+							]
+						},
+						"description": "Visar saldot i den digitala plånboken"
+					},
+					"response": []
+				}
+			],
+			"description": "Förfrågningar gällande den digitala plånboken"
+		},
+		{
+			"name": "Transactions",
+			"item": [
+				{
+					"name": "Mine Transactions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/wallet/mine",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wallet",
+								"mine"
+							]
+						},
+						"description": "Skapa ett block med innestående transaktioner och distribuera dem till övriga noder. Samt skapa en belöningstransaktion"
+					},
+					"response": []
+				}
+			],
+			"description": "Hantering av transaktioner"
+		}
+	]
+}
