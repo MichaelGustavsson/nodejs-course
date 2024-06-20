@@ -10,9 +10,7 @@ function Blocks() {
 
   const loadBlocks = async () => {
     try {
-      const response = await fetch(
-        'https://blooming-sierra-23034-f4e8f9d25142.herokuapp.com/api/v1/blockchain'
-      );
+      const response = await fetch('http://localhost:5001/api/v1/blockchain');
 
       if (response.ok) {
         const result = await response.json();

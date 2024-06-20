@@ -9,9 +9,7 @@ function Wallet() {
 
   const getWalletInfo = async () => {
     try {
-      const response = await fetch(
-        'https://blooming-sierra-23034-f4e8f9d25142.herokuapp.com/api/v1/wallet/info'
-      );
+      const response = await fetch('http://localhost:5001/api/v1/wallet/info');
 
       if (response.ok) {
         const result = await response.json();

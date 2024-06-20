@@ -11,8 +11,7 @@
     "test:ui": "vitest --ui",
     "dev": "nodemon server.mjs",
     "dev-node": "cross-env GENERATE_NODE_PORT='true' nodemon server.mjs",
-    "start": "node server.mjs",
-    "peer": "cross-env GENERATE_NODE_PORT='true' node server.mjs"
+    "start": "node server.mjs"
   },
   "keywords": [],
   "author": "",

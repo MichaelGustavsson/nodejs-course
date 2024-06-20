@@ -85,7 +85,7 @@ app.use('/api/v1/blockchain', blockchainRouter);
 app.use('/api/v1/block', blockRouter);
 app.use('/api/v1/wallet', transactionRouter);
 
-const DEFAULT_PORT = process.env.PORT || 5001;
+const DEFAULT_PORT = 5001;
 const ROOT_NODE = `http://localhost:${DEFAULT_PORT}`;
 
 let NODE_PORT;
