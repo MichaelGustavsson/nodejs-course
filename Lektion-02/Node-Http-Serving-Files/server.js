@@ -7,6 +7,11 @@ const server = http.createServer((req, res) => {
   // Då skapas en variabel som pekar på /static/index.html
   // Om inte så tar vi url värdet ur request objektet.
   let filePath = path.join(__dirname, 'static', req.url === '/' ? 'index.html' : req.url);
+    if (path.normalize(decodeURI(req.url)) !== decodeURI(req.url)) {
+        res.statusCode = 403;
+        res.end();
+        return;
+    }
   // Hämta ut vad filen har för ändelse
   let extension = path.extname(filePath);
   // Vi sätter typen av innehåll till text/html som standard
